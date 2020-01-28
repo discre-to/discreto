@@ -1,0 +1,139 @@
+/**    _ _                 _
+ *  __| (_)___ __ _ _ ___ | |_ ___
+ * / _` | (_-</ _| '_/ -_)|  _/ _ \
+ * \__,_|_/__/\__|_| \___(_)__\___/
+ *
+ * Copyright © 2020 - MIT License
+ * Greg Deback <greg@discre.to>
+ * <https://discre.to>
+ *
+ * Theme parameters
+ */
+
+// Solarized
+// @author   Ethan Schoonover
+// @homepage https://ethanschoonover.com/solarized/
+$base03:    #002b36;
+$base02:    #073642;
+$base01:    #586e75;
+$base00:    #657b83;
+$base0:     #839496;
+$base1:     #93a1a1;
+$base2:     #eee8d5;
+$base3:     #fdf6e3;
+$yellow:    #b58900;
+$orange:    #cb4b16;
+$red:       #dc322f;
+$magenta:   #d33682;
+$violet:    #6c71c4;
+$blue:      #268bd2;
+$cyan:      #2aa198;
+$green:     #859900;
+
+// Colors
+$colorWhitish:    #f8f8f8;
+$colorBack:       lighten($base1, 30%);
+$colorDark:       lighten($base0, 30%);
+$colorFront:      $base03;
+$colorAlt:        darken($blue, 10%);
+$colorOff:        $base01;
+$colorShadow:     rgba($base00, .3);
+
+// Font
+$fontFamily:      "Helvetica Neue", Helvetica, Arial, sans-serif;
+$fontSize:        14px;
+$fontLightWeight: 200;
+$fontWeight:      300;
+$fontBoldWeight:  400;
+$fontBlackWeight: 600;
+$fontPrefsSize:   12px;
+$fontLineHeight:  1.4;
+
+// Links
+$linkColor:       $colorFront;
+$linkHover:       $colorAlt;
+$linkWeight:      300;
+$linkDecoration:  underline;
+
+// Popup
+$popupBack:       $colorBack;
+$popupAlt:        lighten($base01, 30%);
+$popupColor:      $colorFront;
+$popupGutter:     16px;
+$popupShadow:     2px 2px 5px $colorShadow;
+$popupRadius:     8px; // 0|8|16px;
+$popupMaxOffset:  12px;
+$popupMinOffset:  -4px;
+
+// Cube
+$cubeGutter:      32px;
+
+// Logo
+$logoHeight:      36px;
+$logoMargin:      $fontSize;
+
+// Legend
+$legendSize:      $fontSize;
+$legendWeight:    400;
+$legendColor:     $colorAlt;
+
+// Checkboxes
+$sliderWidth:     32px;
+$sliderHeight:    17px;
+$sliderColor:     $colorOff;
+$sliderBorder:    1px;
+$sliderRadius:    $sliderHeight/2 + $sliderBorder;
+$checkWidth:      12px;
+$checkHeight:     12px;
+$checkColor:      $colorOff;
+$checkNever:      $colorFront;
+$checkActive:     $colorAlt;
+$checkBorder:     1px;
+$checkRadius:     $checkHeight/2 + $checkBorder;
+$checkOffset:     3px;
+$checkNewColor:   $colorBack;
+$checkNewWeight:  600;
+
+// Tooltips
+$tooltipSize:     10px;
+$tooltipBack:     $colorAlt;
+$tooltipColor:    $colorBack;
+$tooltipPadding:  2px 5px;
+$tooltipRadius:   8px;
+$tooltipWeight:   300;
+$tooltipNew:      bold;
+
+// List
+$listBack:        $colorDark;
+$listColor:       $colorFront;
+$listShadow:      1px 1px 3px $colorShadow inset;
+
+// Buttons
+$buttonSize:      12px;
+$buttonWeight:    300;
+$buttonOkWeight:  600;
+$buttonBack:      $colorDark;
+$buttonDisabled:  $colorOff;
+$buttonColor:     $colorFront;
+$buttonMainColor: $colorBack;
+$buttonMainBack:  $colorAlt;
+$buttonHeight:    24px;
+$buttonPadding:   5px 15px;
+$buttonMargin:    8px;
+$buttonShadow:    1px 1px 3px $colorShadow;
+$buttonRadius:    4px; // 0|4|8px;
+
+// Alert
+$alertPadding:    16px;
+$alertSize:       12px;
+$alertBack:       lighten($red, 30%);
+$alertColor:      $colorFront;
+
+// Hat
+$hatSize:         32px;
+$hatOffset:       4px;
+$hatOverall:      $hatSize + 2*$hatOffset;
+$hatRadius:       $hatOverall/2;
+
+// Animation
+$delay:           250ms;

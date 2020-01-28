@@ -1,0 +1,437 @@
+@charset "UTF-8";
+/*!    _ _                 _
+ *  __| (_)___ __ _ _ ___ | |_ ___
+ * / _` | (_-</ _| '_/ -_)|  _/ _ \
+ * \__,_|_/__/\__|_| \___(_)__\___/
+ *
+ * Copyright © 2020 - MIT License
+ * Greg Deback <greg@discre.to>
+ * <https://discre.to>
+ */
+/**    _ _                 _
+ *  __| (_)___ __ _ _ ___ | |_ ___
+ * / _` | (_-</ _| '_/ -_)|  _/ _ \
+ * \__,_|_/__/\__|_| \___(_)__\___/
+ *
+ * Copyright © 2020 - MIT License
+ * Greg Deback <greg@discre.to>
+ * <https://discre.to>
+ *
+ * Theme parameters
+ */
+/**    _ _                 _
+ *  __| (_)___ __ _ _ ___ | |_ ___
+ * / _` | (_-</ _| '_/ -_)|  _/ _ \
+ * \__,_|_/__/\__|_| \___(_)__\___/
+ *
+ * Copyright © 2020 - MIT License
+ * Greg Deback <greg@discre.to>
+ * <https://discre.to>
+ *
+ * Default theme layout
+ */
+/**
+ * Popup layout
+ */
+#discreto {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+#discreto *, #discreto *:after, #discreto *:before {
+  box-sizing: border-box;
+}
+#discreto a {
+  font-weight: 300;
+  text-decoration: underline;
+}
+#discreto a, #discreto a:visited {
+  color: #002b36;
+}
+#discreto a:hover, #discreto a:active {
+  color: #1e6ea7;
+}
+#discreto strong {
+  font-weight: 400;
+}
+#discreto .overlay {
+  position: fixed;
+  z-index: 1023;
+  background: rgba(0, 0, 0, 0.4);
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  transition: width ease-in 10ms, height ease-in 10ms, background ease-in 500ms 10ms;
+}
+#discreto.block .overlay {
+  width: 100%;
+  height: 100%;
+}
+#discreto.min .overlay {
+  width: 0;
+  height: 0;
+  background: transparent;
+  transition: width ease-out 10ms 500ms, height ease-out 10ms 500ms, background ease-out 500ms;
+}
+#discreto .popup {
+  display: flex;
+  position: fixed;
+  z-index: 1024;
+  width: 351px;
+  max-height: 90%;
+  max-width: 90%;
+  overflow: hidden;
+  left: 12px;
+  bottom: 12px;
+  background: #e5e8e8;
+  color: #002b36;
+  border-radius: 8px;
+  box-shadow: 2px 2px 5px rgba(101, 123, 131, 0.3);
+  transition: all ease-in 250ms, border-radius ease-in 500ms 250ms, max-width ease-in 250ms 250ms, max-height ease-in 250ms 500ms;
+}
+#discreto .popup:before, #discreto .popup:after {
+  content: "";
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  top: 4px;
+  right: 4px;
+  width: 32px;
+  height: 32px;
+  background: transparent no-repeat center/32px;
+}
+#discreto .popup:before {
+  background-image: url("../img/glasses.png");
+}
+#discreto .popup:after {
+  background-image: url("../img/hat.png");
+  transform-origin: 80% 50%;
+  transition: all ease-in 250ms 250ms;
+}
+#discreto.min .popup {
+  opacity: 0.5;
+  overflow: hidden;
+  left: -4px;
+  bottom: -4px;
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 20px;
+  transition: all ease-out 250ms 500ms, max-height ease-out 250ms, max-width ease-out 250ms 250ms, border-radius ease-out 500ms;
+}
+#discreto.min .popup:hover {
+  opacity: 1;
+}
+#discreto.right .popup {
+  left: auto;
+  right: 12px;
+}
+#discreto.right .popup:before, #discreto.right .popup:after {
+  right: auto;
+  left: 4px;
+}
+#discreto.min.right .popup {
+  left: auto;
+  right: -4px;
+}
+#discreto.center .popup {
+  left: 50%;
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+}
+#discreto.min.center .popup {
+  left: -4px;
+  bottom: -4px;
+  transform: translate(0, 0);
+}
+#discreto.bottom .popup {
+  left: 50%;
+  transform: translateX(-50%);
+}
+#discreto.min.bottom .popup {
+  left: -4px;
+  transform: translateX(0);
+}
+#discreto.cognito0 .popup:after {
+  transform: translateY(1px);
+}
+#discreto.cognito1 .popup:after {
+  transform: translateY(0);
+}
+#discreto.cognito2 .popup:after {
+  transform: rotate(9deg);
+}
+#discreto.cognito3 .popup:after {
+  transform: rotate(18deg);
+}
+#discreto.cognito4 .popup:after {
+  transform: rotate(27deg);
+}
+#discreto.cognito5 .popup:after {
+  transform: rotate(36deg);
+}
+#discreto.spring .popup:after {
+  animation: spring 250ms alternate ease-in-out infinite;
+}
+@keyframes spring {
+  0% {
+    transform: translateY(1px);
+  }
+  100% {
+    transform: translateY(-2px) rotate(5deg);
+  }
+}
+#discreto .consent {
+  margin: 0;
+  width: 100%;
+  padding: 48px 0 16px;
+  perspective: 600px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity ease-in 250ms 500ms;
+}
+#discreto.min .consent {
+  opacity: 0;
+  transition: opacity ease-out 250ms;
+}
+#discreto .logo {
+  flex: 0 0 auto;
+  opacity: 1;
+  max-height: 50px;
+  overflow: hidden;
+  transition: all ease-in 250ms;
+}
+#discreto .logo img {
+  display: block;
+  margin-left: 16px;
+  width: auto;
+  height: auto;
+  max-height: 36px;
+  max-width: 80%;
+  margin-bottom: 1em;
+}
+#discreto.show .logo {
+  opacity: 0;
+  max-height: 0;
+}
+#discreto .head {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0 16px;
+}
+#discreto .head p {
+  margin: 0 0 0.5em;
+}
+#discreto .prefs {
+  flex: 1;
+  transition: all ease-in 250ms;
+  font-size: 12px;
+  padding: 0 16px;
+  margin: 1em 0;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+}
+#discreto .prefs .credits {
+  margin: 0;
+}
+#discreto.show .prefs {
+  opacity: 1;
+  overflow: auto;
+  max-height: 640px;
+}
+#discreto .field {
+  margin: 1em 0;
+  padding: 0;
+  border: none;
+}
+#discreto .field legend {
+  font-size: 14px;
+  font-weight: 400;
+  color: #1e6ea7;
+  margin: 0 0 0.5em;
+  padding: 0;
+  border: none;
+}
+#discreto .item {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+#discreto .item label {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-weight: 300;
+  cursor: pointer;
+}
+#discreto .item input {
+  display: none;
+}
+#discreto .item input:disabled + span {
+  opacity: 0.5;
+}
+#discreto .item input:checked + span:after {
+  left: 17px;
+  background: #1e6ea7;
+  border-color: #1e6ea7;
+}
+#discreto .item span {
+  position: relative;
+}
+#discreto .item span:before {
+  content: "";
+  display: inline-block;
+  width: 32px;
+  height: 17px;
+  border: 1px #586e75 solid;
+  border-radius: 9.5px;
+  vertical-align: bottom;
+  margin-right: 1em;
+}
+#discreto .item span:after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #586e75;
+  border: 1px #586e75 solid;
+  border-radius: 7px;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-size: 10px;
+  line-height: 1;
+  font-weight: 600;
+  color: #e5e8e8;
+  transition: all ease-in 250ms;
+}
+#discreto .item i {
+  flex: 0 0 auto;
+  cursor: pointer;
+  background: #1e6ea7;
+  color: #e5e8e8;
+  font-weight: 300;
+  line-height: 1;
+  margin-left: 1em;
+  padding: 2px 5px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-style: normal;
+  text-align: center;
+}
+#discreto .item i.none {
+  display: none;
+}
+#discreto .item.new span:after {
+  content: "+";
+}
+#discreto .item.new label {
+  font-weight: bold;
+}
+#discreto .info {
+  margin: 0.5em -16px;
+  padding: 0 16px;
+  background: #d6dbdc;
+  color: #002b36;
+  box-shadow: 1px 1px 3px rgba(101, 123, 131, 0.3) inset;
+  overflow: auto;
+  max-height: 100px;
+  transition: margin ease-in 250ms, max-height ease-in 250ms;
+}
+#discreto .info.rolled {
+  overflow: hidden;
+  max-height: 0;
+  margin: 0 -16px;
+  transition: max-height ease-out 250ms, margin ease-out 250ms;
+}
+#discreto .info div {
+  margin: 1em 0;
+}
+#discreto .info p {
+  margin: 0 0 0.5em;
+}
+#discreto .info ul {
+  margin: 0;
+  padding: 0;
+  list-style: square inside;
+}
+#discreto .info.misuse {
+  background: #f2b3b2;
+  color: #002b36;
+}
+#discreto .btns {
+  flex: 0 0 auto;
+  position: relative;
+  text-align: right;
+  transform-style: preserve-3d;
+  height: 24px;
+}
+@media (max-width: 320px) {
+  #discreto .btns {
+    height: 56px;
+  }
+}
+#discreto .btns div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  padding: 0 16px;
+  transition: all ease-in 500ms 250ms;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+#discreto .btns div.back {
+  transform: rotateX(180deg);
+}
+#discreto .btns button {
+  cursor: pointer;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 12px;
+  background: #d6dbdc;
+  color: #002b36;
+  margin: 0 0 8px;
+  padding: 5px 15px;
+  box-shadow: 1px 1px 3px rgba(101, 123, 131, 0.3);
+  border: none;
+  transition: all ease-in 250ms;
+}
+#discreto .btns button:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+#discreto .btns button:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  font-weight: 600;
+  color: #e5e8e8;
+  background: #1e6ea7;
+}
+#discreto .btns button:hover, #discreto .btns button:active {
+  box-shadow: none;
+  background: #002b36;
+  color: #d6dbdc;
+}
+#discreto.show .btns div.back {
+  transform: rotateX(0);
+}
+#discreto.show .btns div.front {
+  transform: rotateX(-180deg);
+}
+#discreto .noscript {
+  width: 0;
+  height: 0;
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/*# sourceMappingURL=discreto.css.map */

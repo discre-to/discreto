@@ -1,0 +1,34 @@
+# Keep /dist in Git (but build before pushing)
+#/dist/
+
+# Also keep /package-lock.json (for dependencies versions)
+#/package-lock.json
+
+# Exclude
+/node_modules/
+/test/config.js
+/live/config.json
+
+# Temporary
+/tmp/
+.sass-cache
+
+# Windows
+Thumbs.db
+ehthumbs*.db
+[Dd]esktop.ini
+*.stackdump
+*.lnk
+
+# OSX
+.localized
+.Trashes
+.Spotlight-V100
+.DS_Store*
+._*
+
+# Junk
+*~
+*#
+.#*
+\#*#

@@ -1,0 +1,75 @@
+{
+  "debug": true,
+  "gui": {
+    "lang": "en",
+    "pos": "left",
+    "logo": false,
+    "block": true,
+    "css": "../dist/discreto.css"
+  },
+  "cookie": {
+    "name": "discreto_live",
+    "days": "1",
+    "wild": [
+      "localhost",
+      "discreto.localhost",
+      "cookie.localhost"
+    ],
+    "path": "/live/",
+    "share": true
+  },
+  "ids": {
+    "analytics": "UB-40",
+    "facebook": "911",
+    "html": "live"
+  },
+  "services": {
+    "analytics": {
+      "types": [
+        "audience"
+      ],
+      "tag": "analytics",
+      "load": "pageView"
+    },
+    "facebook": {
+      "types": [
+        "social"
+      ],
+      "tag": "facebook"
+    },
+    "pinterest": {
+      "types": [
+        "social"
+      ],
+      "tag": "pinterest"
+    },
+    "soundcloud": {
+      "types": [
+        "media"
+      ],
+      "tag": "nil"
+    },
+    "youtube": {
+      "types": [
+        "media"
+      ],
+      "tag": "nil"
+    },
+    "_consent": {
+      "name": "Custom consent",
+      "types": [
+        "misc"
+      ],
+      "anon": true,
+      "tag": "nil"
+    },
+    "_html": {
+      "name": "Custom HTML",
+      "types": [
+        "comments"
+      ],
+      "tag": "html",
+      "load": "<h3>One comment</h3>\n<p>Anonymous said: Thank you!</p>\n<script>console.info('Comments enabled!')</script>"
+    }
+  }
+}

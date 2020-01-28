@@ -1,0 +1,517 @@
+/**    _ _                 _
+ *  __| (_)___ __ _ _ ___ | |_ ___
+ * / _` | (_-</ _| '_/ -_)|  _/ _ \
+ * \__,_|_/__/\__|_| \___(_)__\___/
+ *
+ * Copyright © 2020 - MIT License
+ * Greg Deback <greg@discre.to>
+ * <https://discre.to>
+ *
+ * Default theme layout
+ */
+
+/**
+ * Popup layout
+ */
+#discreto {
+
+  // Reset
+  *, *:after, *:before {
+    box-sizing: border-box;
+  }
+
+  // Font face
+  font-family: $fontFamily;
+  font-size:   $fontSize;
+  font-weight: $fontWeight;
+  line-height: $fontLineHeight;
+
+  // Links
+  a {
+    font-weight:     $linkWeight;
+    text-decoration: $linkDecoration;
+    &, &:visited {
+      color: $linkColor;
+    }
+    &:hover, &:active {
+      color: $linkHover;
+    }
+  }
+
+  // Strong
+  strong {
+    font-weight: $fontBoldWeight;
+  }
+
+  // Overlay mask
+  .overlay {
+    position:   fixed;
+    z-index:    1023;
+    background: rgba(black, .4);
+    bottom:     0;
+    left:       0;
+    // Disabled by default
+    width:      0;
+    height:     0;
+    transition: width ease-in 10ms, height ease-in 10ms,
+                background ease-in 2*$delay 10ms;
+  }
+  &.block .overlay {
+    // Enabled
+    width:  100%;
+    height: 100%;
+  }
+  &.min .overlay {
+    // Hidden
+    width:      0;
+    height:     0;
+    background: transparent;
+    transition: width ease-out 10ms 2*$delay, height ease-out 10ms 2*$delay,
+                background ease-out 2*$delay;
+  }
+
+  // Popup
+  .popup {
+
+    // Fixed
+    display:       flex;
+    position:      fixed;
+    z-index:       1024;
+    width:         351px;
+    max-height:    90%;
+    max-width:     90%;
+    overflow:      hidden;
+    left:          $popupMaxOffset;
+    bottom:        $popupMaxOffset;
+    background:    $popupBack;
+    color:         $popupColor;
+    border-radius: $popupRadius;
+    box-shadow:    $popupShadow;
+    transition:    all ease-in $delay,
+                   border-radius ease-in 2*$delay $delay,
+                   max-width ease-in $delay $delay, max-height ease-in $delay 2*$delay;
+
+    // Animated hat
+    &:before,
+    &:after {
+      content:    "";
+      position:   absolute;
+      display:    block;
+      cursor:     pointer;
+      top:        $hatOffset;
+      right:      $hatOffset;
+      width:      $hatSize;
+      height:     $hatSize;
+      background: transparent no-repeat center/$hatSize;
+    }
+    &:before {
+      background-image: url('../img/glasses.png');
+    }
+    &:after {
+      background-image: url('../img/hat.png');
+      transform-origin: 80% 50%;
+      transition:       all ease-in $delay $delay;
+    }
+
+  }
+
+  // Minified popup
+  &.min .popup {
+    opacity:       .5;
+    overflow:      hidden;
+    left:          $popupMinOffset;
+    bottom:        $popupMinOffset;
+    max-width:     $hatOverall;
+    max-height:    $hatOverall;
+    border-radius: $hatRadius;
+    transition:    all ease-out $delay 2*$delay,
+                   max-height ease-out $delay, max-width ease-out $delay $delay,
+                   border-radius ease-out 2*$delay;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Positions
+  &.right .popup {
+    left:  auto;
+    right: $popupMaxOffset;
+    &:before,
+    &:after {
+      right: auto;
+      left:  $hatOffset;
+    }
+  }
+  &.min.right .popup {
+    left:  auto;
+    right: $popupMinOffset;
+  }
+  &.center .popup {
+    left:       50%;
+    bottom:     50%;
+    transform:  translate(-50%, 50%);
+  }
+  &.min.center .popup {
+    left:        $popupMinOffset;
+    bottom:      $popupMinOffset;
+    transform:   translate(0, 0);
+  }
+  &.bottom .popup {
+    left:       50%;
+    transform:  translateX(-50%);
+  }
+  &.min.bottom .popup {
+    left:      $popupMinOffset;
+    transform: translateX(0);
+  }
+
+  // Cognition level
+  &.cognito0 .popup:after {
+    transform: translateY(1px);
+  }
+  &.cognito1 .popup:after {
+    transform: translateY(0);
+  }
+  &.cognito2 .popup:after {
+    transform: rotate(9deg);
+  }
+  &.cognito3 .popup:after {
+    transform: rotate(18deg);
+  }
+  &.cognito4 .popup:after {
+    transform: rotate(27deg);
+  }
+  &.cognito5 .popup:after {
+    transform: rotate(36deg);
+  }
+  &.spring .popup:after {
+    animation: spring $delay alternate ease-in-out infinite;
+  }
+  @keyframes spring {
+    0%   { transform: translateY(1px); }
+    100% { transform: translateY(-2px) rotate(5deg); }
+  }
+
+  // Consent form
+  .consent {
+
+    margin:         0;
+    width:          100%;
+    padding:        $hatSize+$popupGutter 0 $popupGutter;
+    perspective:    600px;
+
+    // Flex
+    display:        flex;
+    flex-direction: column;
+    overflow:       hidden;
+
+    // Fade in
+    opacity:        1;
+    transition:     opacity ease-in $delay 2*$delay;
+
+  }
+
+  // Fade out
+  &.min .consent {
+    opacity:    0;
+    transition: opacity ease-out $delay;
+  }
+
+  // Logo
+  .logo {
+    // Visible by default
+    flex:       0 0 auto;
+    opacity:    1;
+    max-height: $logoHeight+$logoMargin;
+    overflow:   hidden;
+    transition: all ease-in $delay;
+    img {
+      display:       block;
+      margin-left:   $popupGutter;
+      width:         auto;
+      height:        auto;
+      max-height:    $logoHeight;
+      max-width:     80%;
+      margin-bottom: 1em;
+    }
+  }
+
+  // Hidden on prefs screen
+  &.show .logo {
+    opacity:    0;
+    max-height: 0;
+  }
+
+  // Header
+  .head {
+    flex:    0 0 auto;
+    margin:  0;
+    padding: 0 $popupGutter;
+    p {
+      margin: 0 0 .5em;
+    }
+  }
+
+  // Preferences
+  .prefs {
+
+    // Flex
+    flex:       1;
+    transition: all ease-in $delay;
+    font-size:  $fontPrefsSize;
+    padding:    0 $popupGutter;
+    margin:     1em 0;
+
+    // Collapsed by default
+    opacity:    0;
+    max-height: 0;
+    overflow:   hidden;
+
+    // Credits
+    .credits {
+      margin: 0;
+    }
+
+  }
+
+  // Expanded & scrollable
+  &.show .prefs {
+    opacity:    1;
+    overflow:   auto;
+    max-height: 640px;
+  }
+
+  // Fieldset
+  .field {
+    margin:  1em 0;
+    padding: 0;
+    border:  none;
+    legend {
+      font-size:   $legendSize;
+      font-weight: $legendWeight;
+      color:       $legendColor;
+      margin:      0 0 .5em;
+      padding:     0;
+      border:      none;
+    }
+  }
+
+  // Fieldset item
+  .item {
+
+    // Relative
+    position:        relative;
+    display:         flex;
+    justify-content: space-between;
+    align-items:     center;
+    margin-bottom:   .5em;
+
+    // Block label
+    label {
+      display:     block;
+      margin:      0;
+      padding:     0;
+      font-weight: $fontWeight;
+      cursor:      pointer;
+    }
+
+    // Nice checkbox
+    input {
+      display: none;
+      &:disabled + span {
+        opacity: .5;
+      }
+      &:checked + span:after {
+        left:         $sliderWidth - $checkWidth - $checkOffset;
+        background:   $checkActive;
+        border-color: $checkActive;
+      }
+    }
+    span {
+      position: relative;
+      &:before {
+        content:        "";
+        display:        inline-block;
+        width:          $sliderWidth;
+        height:         $sliderHeight;
+        border:         $sliderBorder $sliderColor solid;
+        border-radius:  $sliderRadius;
+        vertical-align: bottom;
+        margin-right:   1em;
+      }
+      &:after {
+        content:       "";
+        position:      absolute;
+        width:         $checkWidth;
+        height:        $checkHeight;
+        background:    $checkColor;
+        border:        $checkBorder $checkColor solid;
+        border-radius: $checkRadius;
+        left:          $checkOffset;
+        top:           50%;
+        transform:     translateY(-50%);
+        text-align:    center;
+        font-size:     10px;
+        line-height:   1;
+        font-weight:   $checkNewWeight;
+        color:         $checkNewColor;
+        transition:    all ease-in $delay;
+      }
+    }
+
+    // Tooltip
+    i {
+      flex:          0 0 auto;
+      cursor:        pointer;
+      background:    $tooltipBack;
+      color:         $tooltipColor;
+      font-weight:   $tooltipWeight;
+      line-height:   1;
+      margin-left:   1em;
+      padding:       $tooltipPadding;
+      border-radius: $tooltipRadius;
+      font-size:     $tooltipSize;
+      font-style:    normal;
+      text-align:    center;
+      &.none {
+        display: none;
+      }
+    }
+    &.new {
+      span:after {
+        content: "+";
+      }
+      label {
+        font-weight: $tooltipNew;
+      }
+    }
+
+  }
+
+  // About box
+  .info {
+
+    margin:     .5em (-$popupGutter);
+    padding:    0 $popupGutter;
+    background: $listBack;
+    color:      $listColor;
+    box-shadow: $listShadow;
+
+    // Expanded
+    overflow:   auto;
+    max-height: 100px;
+    transition: margin ease-in $delay,
+                max-height ease-in $delay;// $delay;
+
+    // Collapsed
+    &.rolled {
+      overflow:   hidden;
+      max-height: 0;
+      margin:     0 (-$popupGutter);
+      transition: max-height ease-out $delay,
+                  margin ease-out $delay;// $delay;
+    }
+
+    // Container
+    div {
+      margin: 1em 0;
+    }
+    p {
+      margin: 0 0 .5em;
+    }
+
+    // Lists
+    ul {
+      margin:     0;
+      padding:    0;
+      list-style: square inside;
+    }
+
+    // Misusage warning
+    &.misuse {
+      background: $alertBack;
+      color:      $alertColor;
+    }
+
+  }
+
+  // Buttons
+  .btns {
+
+    flex:            0 0 auto;
+    position:        relative;
+    text-align:      right;
+    transform-style: preserve-3d;
+    height:          $buttonHeight;
+    @media (max-width: 320px) {
+      height: 2*$buttonHeight+$buttonMargin;
+    }
+
+    // Flip
+    div {
+      position:            absolute;
+      top:                 0;
+      right:               0;
+      width:               100%;
+      padding:             0 $popupGutter;
+      transition:          all ease-in 2*$delay $delay;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      backface-visibility: hidden;
+      &.back {
+        transform: rotateX(180deg);
+      }
+    }
+
+    // Button
+    button {
+      cursor:      pointer;
+      font-family: $fontFamily;
+      font-weight: $buttonWeight;
+      font-size:   $buttonSize;
+      background:  $buttonBack;
+      color:       $buttonColor;
+      margin:      0 0 $buttonMargin;
+      padding:     $buttonPadding;
+      box-shadow:  $buttonShadow;
+      border:      none;
+      transition:  all ease-in $delay;
+      &:first-child {
+        border-top-left-radius:    $buttonRadius;
+        border-bottom-left-radius: $buttonRadius;
+      }
+      &:last-child {
+        border-top-right-radius:    $buttonRadius;
+        border-bottom-right-radius: $buttonRadius;
+        font-weight: $buttonOkWeight;
+        color:       $buttonMainColor;
+        background:  $buttonMainBack;
+      }
+      &:hover, &:active {
+        box-shadow: none;
+        background: $buttonColor;
+        color:      $buttonBack;
+      }
+    }
+
+  }
+
+  // Flap
+  &.show .btns {
+    div.back {
+      transform: rotateX(0);
+    }
+    div.front {
+      transform: rotateX(-180deg);
+    }
+  }
+
+  // Hidden iframes
+  .noscript {
+    width:      0;
+    height:     0;
+    display:    none !important;
+    visibility: hidden !important;
+  }
+
+}
