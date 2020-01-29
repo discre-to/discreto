@@ -19,7 +19,7 @@
     "share": true
   },
   "ids": {
-    "analytics": "UB-40",
+    "gtag": "UB-40",
     "facebook": "911",
     "html": "live"
   },
@@ -28,8 +28,8 @@
       "types": [
         "audience"
       ],
-      "tag": "analytics",
-      "load": "pageView"
+      "tag": "gtag",
+      "load": "UB-40"
     },
     "facebook": {
       "types": [

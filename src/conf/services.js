@@ -18,6 +18,12 @@ let
   d = document
 
 /**
+ * @warning Don't use lambda function () => {} to queue arguments (gtag, fbq,
+ * twq, uetq, mt...), as trackers are expecting items to be of type Object or
+ * Arguments (arguments is of type Arguments, ...args of type... Array).
+ */
+
+/**
  * Nothing (embedded iframes, DOM, script, images)
  */
 js.nil = {}
@@ -131,41 +137,57 @@ js.gtm = {
   // Init
   init: (id) => {
     let now = new Date().getTime()
-    w.dataLayer = w.dataLayer = [ { event: 'gtm.js', 'gtm.start': now } ]
-    if (!w.gtag) w.gtag = (...args) => w.dataLayer.push(args)
+    w.dataLayer = w.dataLayer = []
+    w.dataLayer.push({ event: 'gtm.js', 'gtm.start': now })
+    if (!w.gtag) w.gtag = function () { w.dataLayer.push(arguments) }
     return "https://www.googletagmanager.com/gtm.js?id=" + id
   },
 
   // Start services
   start: (services) => {
-    let evt = { service: '|' + services.join('|') + '|' }
-    js.gtm.send('discreto', evt)
-  },
-  send: (name, evt = null) => {
-    if (!evt) evt = {}
-    evt.event = name
-    w.dataLayer.push(evt)
+    w.dataLayer.push({
+      event: 'discreto',
+      service: '|' + services.join('|') + '|'
+    })
   }
 
 }
 
 /**
- * Google Analytics (Legacy)
+ * Google Tag (GTag)
  *
- * @version ga.js
- * @see     https://developers.google.com/analytics/devguides/collection/gajs
- *
- *
+ * @version gtag.js
+ * @see     analytics
+ * @see     adwords
  */
-js.analyticsGA = {
+js.gtag = {
 
-  // @todo
+  anon: false,
+
+  // Init
+  init: (id, anon) => {
+    if (anon) js.gtag.anon = true
+    if (w.gtag) return null // if made available by GTM
+    w.dataLayer = w.dataLayer || [];
+    let n = w.gtag = function () { w.dataLayer.push(arguments) }
+    n('js', new Date())
+    return "https://www.googletagmanager.com/gtag/js?id=" + id
+  },
+
+  // Start
+  start: (tracks) => {
+    tracks.forEach((track) => {
+      let o = js.gtag.anon ? { anonymize_ip: true } : {}
+      w.gtag('config', track, o)
+    })
+  }
 
 }
 
 /**
  * Google Analytics
  *
+ * @api     ga()
  * @version analytics.js
  * @see     https://developers.google.com/analytics/devguides/collection/analyticsjs/
  *
@@ -176,13 +198,13 @@ js.analyticsGA = {
  * ga('create', 'UA-XXXXX-Y', 'auto');
  * ga('send', 'pageview');
  */
-js.analytics = {
+js.analyticsGA = {
 
   // Init
   init: (id, anon) => {
     if (w.ga) return null
     w.GoogleAnalyticsObject = 'ga'
-    let n = w.ga = (...args) => n.q.push(args)
+    let n = w.ga = function () { n.q.push(arguments) }
     n.q = []
     n.l = 1*new Date()
     n('create', id, 'auto')
@@ -191,40 +213,23 @@ js.analytics = {
   },
 
   // Start
-  start: (tracks) => tracks.forEach((track) => js.analytics.send(track)),
-  send: (...args) => {
-    args.unshift('send')
-    w.ga.apply(w.ga, args)
+  start: (tracks) => {
+    tracks.forEach((track) => w.ga('send', track))
   }
 
 }
 
 /**
- * Google Tag (GTag)
+ * Google Analytics (GTag)
  *
+ * @api     gtag()
  * @version gtag.js
  * @see     https://developers.google.com/analytics/devguides/collection/gtagjs
- * @see     https://support.google.com/google-ads/answer/6331314
  */
-js.gtag = {
+js.analytics = {
 
-  // Init
-  init: (id, anon) => {
-    if (w.gtag) return null
-    w.dataLayer = w.dataLayer || [];
-    let n = w.gtag = (...args) => w.dataLayer.push(args), o = {}
-    n('js', new Date())
-    if (anon) o.anonymize_ip = true
-    n('config', id, o)
-    return "https://www.googletagmanager.com/gtag/js?id=" + id
-  },
-
-  // Start
-  start: (tracks) => tracks.forEach((track) => js.gtag.send(track)),
-  send: (...args) => {
-    args.unshift('send')
-    w.gtag(args)
-  }
+  init: js.gtag.init,
+  start: js.gtag.start
 
 }
 
@@ -257,8 +262,9 @@ js.matomo = {
   },
 
   // Events
-  start: (tracks) => tracks.forEach((track) => js.matomo.send(track)),
-  send: (...args) => w._paq.push(args)
+  start: (tracks) => {
+    tracks.forEach((track) => w._paq.push(track))
+  }
 
 }
 
@@ -288,8 +294,8 @@ js.facebookPixel = {
   // Init
   init: (id) => {
     if (w.fbq) return null
-    let n = w.fbq = (...args) => {
-      n.callMethod ? n.callMethod.apply(n, args) : n.queue.push(args)
+    let n = w.fbq = function () {
+      n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments)
     }
     if (!w._fbq) w._fbq  = n
     n.push    = n
@@ -301,11 +307,11 @@ js.facebookPixel = {
   },
 
   // Send events
-  start: (evts) => evts.forEach((evt) => js.facebookPixel.send(evt)),
-  send: function (...args) {
-    let std = js.facebookPixel.std.includes(args[0])
-    args.unshift(std ? 'track' : 'trackCustom')
-    w.fbq.apply(w.fbq, args)
+  start: (tracks) => {
+    tracks.forEach((track) => {
+      let std = js.facebookPixel.std.includes(track)
+      w.fbq(std ? 'track' : 'trackCustom', track)
+    })
   }
 
 }
@@ -329,7 +335,7 @@ js.mautic = {
   init: (url) => {
     if (w.mt) return null
     w.MauticTrackingObject = 'mt'
-    let n = w.mt = () => { n.q.push(arguments) }
+    let n = w.mt = function () { n.q.push(arguments) }
     n.q = []
     // Anonymize?
     if (url.charAt(url.length - 1) !== '/')
@@ -338,10 +344,8 @@ js.mautic = {
   },
 
   // Start
-  start: (tracks) => tracks.forEach((track) => js.mautic.send(track)),
-  send: (...args) => {
-    args.unshift('send')
-    w.mt.apply(w.mt, args)
+  start: (tracks) => {
+    tracks.forEach((track) => w.mt('send', track))
   }
 
 }
@@ -371,10 +375,8 @@ js.twitterPixel = {
   },
 
   // Start
-  start: (tracks) => tracks.forEach((track) => js.twitterPixel.send(track)),
-  send: (...args) => {
-    args.unshift('track')
-    w.twq.apply(w.twq, args)
+  start: (tracks) => {
+    tracks.forEach((track) => w.twq('track', track))
   }
 
 }
@@ -605,7 +607,14 @@ js.adsense = {
  * AdWords
  *
  * @see gtag
+ * @see https://support.google.com/google-ads/answer/6331314
  */
+js.adwords = {
+
+  init: js.gtag.init,
+  start: js.gtag.start
+
+}
 
 /**
  * Amazon Ads
@@ -658,9 +667,8 @@ js.microsoftAds = {
   start: (tracks) => {
     var o = { ti: js.microsoftAds.id, q: w.uetq }
     w.uetq = new UET(o)
-    tracks.forEach((track) => js.microsoftAds.send(track))
-  },
-  send: (track) => w.uetq.push(track)
+    tracks.forEach((track) => w.uetq.push(track))
+  }
 
 }
 

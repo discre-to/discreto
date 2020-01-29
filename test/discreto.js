@@ -1216,7 +1216,7 @@ describe('discreto shared, first time', () => {
   describe('accept all', () => {
 
     // Accept all
-    it('enables everything', () => {
+    it('enables everything', (done) => {
 
       // Enable share first
       w.discreto.state.prefs._share = true
@@ -1227,6 +1227,9 @@ describe('discreto shared, first time', () => {
       expect(w.discreto.state.prefs.anon).to.be(true)
       expect(w.discreto.state.prefs.cognito).to.be(true)
       expect(w.discreto.state.mode).to.be('cookie')
+
+      // Wait for POST request... 200ms should be enough
+      setTimeout(done, 200)
 
     })
 
@@ -1312,7 +1315,7 @@ describe('discreto, enough shared prefs', () => {
     })
 
     // Minimized
-    it('stats minimalized', () => {
+    it('starts minimalized', () => {
 
       // Enough info in mask
       expect(_.$('#discreto').classList).to.contain('min')
