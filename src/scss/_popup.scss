@@ -26,6 +26,10 @@
   font-weight: $fontWeight;
   line-height: $fontLineHeight;
 
+  button, p, li, dt {
+    font-family: inherit;
+  }
+
   // Links
   a {
     font-weight:     $linkWeight;
@@ -466,7 +470,6 @@
     // Button
     button {
       cursor:      pointer;
-      font-family: $fontFamily;
       font-weight: $buttonWeight;
       font-size:   $buttonSize;
       background:  $buttonBack;
