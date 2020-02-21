@@ -123,6 +123,7 @@ concernant.</p>\
     analyticsGA:         "Google Analytics",
     'matomo-anon':       "Matomo (anonymisé)",
     matomo:              "Matomo",
+    hotjar:              "HotJar (anonymisé)",
     koban:               "Koban",
     mautic:              "Mautic",
     facebookPixel:       "Facebook Pixel",

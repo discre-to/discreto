@@ -119,6 +119,7 @@ disabled.</strong></p>"
     analyticsGA:         "Google Analytics",
     'matomo-anon':       "Matomo (anonymized)",
     matomo:              "Matomo",
+    hotjar:              "HotJar (anonymized)",
     koban:               "Koban",
     mautic:              "Mautic",
     facebookPixel:       "Facebook Pixel",

@@ -269,6 +269,34 @@ js.matomo = {
 }
 
 /**
+ * HotJar
+ *
+ * @see https://help.hotjar.com/hc/en-us/articles/115011639927-What-is-the-Hotjar-Tracking-Code-
+ * @version 6
+ *
+ * (function(h,o,t,j,a,r){
+ * h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+ * h._hjSettings={hjid:1,hjsv:5};
+ * a=o.getElementsByTagName('head')[0];
+ * r=o.createElement('script');r.async=1;
+ * r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+ * a.appendChild(r);
+ * })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+ */
+js.hotjar = {
+
+  // Init
+  init: (id) => {
+    if (w.hj) return null
+    w._hjSettings = { hjid: id, hjsv: 6 }
+    let n = w.hj = function() { n.q.push(arguments) }
+    n.q = []
+    return '//static.hotjar.com/c/hotjar-' + id + '.js?sv=6'
+  }
+
+}
+
+/**
  * Facebook Pixel
  *
  * @see https://developers.facebook.com/docs/facebook-pixel/advanced/
@@ -620,6 +648,11 @@ js.adwords = {
  * Amazon Ads
  *
  * @see https://affiliate-program.amazon.com/help/topic/t405
+ * @deprecated
+ *
+ * Instead, use:
+ * <script data-discreto="amazonAds"
+ *         data-src="//z-na.amazon-adsystem.com/widgets/onejs"></script>
  */
 js.amazonAds = {
 
