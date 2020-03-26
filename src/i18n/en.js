@@ -113,9 +113,9 @@ disabled.</strong></p>"
   // Services
   services: {
     // Audience
-    'analytics-anon':    "Google Analytics (anonymized)",
+    'analytics-anon':    "Google Analytics (IP anonymization)",
     analytics:           "Google Analytics",
-    'analyticsGA-anon':  "Google Analytics (anonymized)",
+    'analyticsGA-anon':  "Google Analytics (IP anonymization)",
     analyticsGA:         "Google Analytics",
     'matomo-anon':       "Matomo (anonymized)",
     matomo:              "Matomo",

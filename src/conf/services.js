@@ -139,7 +139,8 @@ js.gtm = {
     let now = new Date().getTime()
     w.dataLayer = w.dataLayer = []
     w.dataLayer.push({ event: 'gtm.js', 'gtm.start': now })
-    if (!w.gtag) w.gtag = function () { w.dataLayer.push(arguments) }
+    // @warning don't define gtag() here: gtag/js !== gtm.js
+    // if (!w.gtag) w.gtag = function () { w.dataLayer.push(arguments) }
     return "https://www.googletagmanager.com/gtm.js?id=" + id
   },
 
@@ -167,7 +168,7 @@ js.gtag = {
   // Init
   init: (id, anon) => {
     if (anon) js.gtag.anon = true
-    if (w.gtag) return null // if made available by GTM
+    if (w.gtag) return null
     w.dataLayer = w.dataLayer || [];
     let n = w.gtag = function () { w.dataLayer.push(arguments) }
     n('js', new Date())

@@ -117,9 +117,9 @@ concernant.</p>\
   // Services
   services: {
     // Audience
-    'analytics-anon':    "Google Analytics (anonymisé)",
+    'analytics-anon':    "Google Analytics (IP anonymisée)",
     analytics:           "Google Analytics",
-    'analyticsGA-anon':  "Google Analytics (anonymisé)",
+    'analyticsGA-anon':  "Google Analytics (IP anonymisée)",
     analyticsGA:         "Google Analytics",
     'matomo-anon':       "Matomo (anonymisé)",
     matomo:              "Matomo",
