@@ -42,6 +42,9 @@
 #discreto *, #discreto *:after, #discreto *:before {
   box-sizing: border-box;
 }
+#discreto button, #discreto p, #discreto li, #discreto dt {
+  font-family: inherit;
+}
 #discreto a {
   font-weight: 300;
   text-decoration: underline;
@@ -394,7 +397,6 @@
 }
 #discreto .btns button {
   cursor: pointer;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   font-size: 12px;
   background: #d6dbdc;
