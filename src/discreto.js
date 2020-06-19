@@ -235,6 +235,29 @@ function when (name) {
 
 }
 
+/**
+ * Update prefs
+ *
+ * @param  {string} name     Service name
+ * @param  {bool}   on       State
+ * @param  {bool}   [store]  Save cookie?
+ * @return {void}
+ */
+function update (name, on, store = false) {
+
+  if (!name)
+    return
+
+  // Set
+  set(name, on)
+
+  // Apply once or save (and apply)
+  if (store)
+    save(true)
+  else load(true)
+
+}
+
 /* * GUI * */
 
 /**
@@ -372,6 +395,10 @@ function select (select, unset = false) {
 
     // Never select 'share' without user consent
     if (name === '_share')
+      return
+
+    // Forced cookies are always on
+    if (opts.force)
       return
 
     // Set regarding DNT
@@ -933,16 +960,18 @@ function build () {
           { tag: 'logo:div.logo' },
           { tag: 'head:div.head' },
           { tag: 'prefs:div.prefs', child: [
-            { tag: 'div.item', child: [
-              { tag: 'label', child: [
-                { tag:  'input',
-                  atts: { type: 'checkbox',
-                          checked: 'checked', disabled: 'disabled' } },
-                { tag: 'span', html: dict.options.cookie } ] },
-              { tag: 'i',
-                atts: { 'data-name': '_discreto' },
-                evts: { click: info },
-                html: dict.btns.cookie } ] },
+            { tag: 'mandatory:fieldset.field', child: [
+              { tag: 'div.item', child: [
+                { tag: 'label', child: [
+                  { tag:  'input',
+                    atts: { type: 'checkbox',
+                            checked: 'checked',
+                            disabled: 'disabled' } },
+                  { tag: 'span', html: dict.options.cookie } ] },
+                { tag: 'i',
+                  atts: { 'data-name': '_discreto' },
+                  evts: { click: info },
+                  html: dict.btns.cookie } ] } ] },
             { tag: 'foot:p.credits',
               html: dict.msg.thanks } ] },
           { tag: 'btns:nav.btns',  child: [
@@ -1035,18 +1064,26 @@ function item (name, opts) {
 
     let
       item  = {},
+      atts  = { type: 'checkbox', name },
       title = opts.name || dict.services[name] || name
 
     // Localized
     if (title instanceof Object)
       title = title[state.lang] || title[conf.gui.lang] || name
 
+    // Force cookie (mandatory)
+    if (opts.force) {
+      state.prefs[name] = true
+      atts.checked  = true
+      atts.disabled = true
+    }
+
     _.dom({
       tag: 'box:div.item',
       child: [
         { tag: 'label', child: [
           { tag:  'check:input', evts: { change: toggle },
-            atts: { type: 'checkbox', name } },
+            atts: atts },
           { tag: 'span', html: title } ] },
         { tag: 'i', evts: { click: info },
           atts: { class: i ? 'none' : '',
@@ -1441,7 +1478,7 @@ function log (...args) {
 }
 
 // Expose
-w.discreto = { start, clean, when, prefs, popup, mode, conf, state }
+w.discreto = { start, clean, when, update, prefs, popup, mode, conf, state }
 
 // Init on load
 w.addEventListener('load', init, true)

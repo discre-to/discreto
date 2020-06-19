@@ -24,6 +24,20 @@
     "html": "live"
   },
   "services": {
+    "_personal": {
+      "name": {
+        "fr": "Cookie indispensable",
+        "en": "Required cookie"
+      },
+      "about": {
+        "fr": "Ce cookie est indispensable",
+        "en": "This cookie is required"
+      },
+      "types": [
+        "mandatory"
+      ],
+      "force": true
+    },
     "analytics": {
       "types": [
         "audience"
