@@ -1291,14 +1291,15 @@ function write () {
   expired.setDate(expired.getDate() - 1)
   empty += ';path=' + path
   empty += ';expires=' + expired.toUTCString()
-  d.cookie = empty + ';domain=' + host
+  d.cookie = empty + ';sameSite=Strict;domain=' + host
   if (conf.cookie.wild)
-    d.cookie = empty + ';domain=' + domain
+    d.cookie = empty + ';sameSite=Lax;domain=' + domain
 
   // Set new one (single or wild)
   expires.setDate(expires.getDate() + conf.cookie.days)
   cookie += ';path=' + path
   cookie += ';expires=' + expires.toUTCString()
+  cookie += ';sameSite=' + (state.prefs._wild ? 'Lax' : 'Strict')
   cookie += ';domain=' + (state.prefs._wild ? domain : host)
   d.cookie = cookie
   log('write:', cookie)

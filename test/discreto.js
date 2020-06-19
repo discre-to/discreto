@@ -42,6 +42,7 @@ describe('discreto, first time', () => {
       // Remove previous (single and wild)
       expired.setDate(expired.getDate() - 1)
       empty += ';expires=' + expired.toUTCString() + ';domain=' + host
+      empty += ';sameSite=Lax'
       d.cookie = empty
 
       // Wait for it...
@@ -843,6 +844,7 @@ describe('discreto DNT, first time', () => {
       // Remove previous (single and wild)
       expired.setDate(expired.getDate() - 1)
       empty += ';expires=' + expired.toUTCString() + ';domain=' + host
+      empty += ';sameSite=Lax'
       d.cookie = empty
 
       // Wait for it...
@@ -1165,6 +1167,7 @@ describe('discreto shared, first time', () => {
       // Remove previous (single and wild)
       expired.setDate(expired.getDate() - 1)
       empty += ';expires=' + expired.toUTCString() + ';domain=' + host
+      empty += ';sameSite=Lax'
       d.cookie = empty
 
       // Wait for it...
@@ -1273,6 +1276,7 @@ describe('discreto, enough shared prefs', () => {
       // Remove previous (single and wild)
       expired.setDate(expired.getDate() - 1)
       empty += ';expires=' + expired.toUTCString() + ';domain=' + host
+      empty += ';sameSite=Lax'
       d.cookie = empty
 
       // Wait for it...
