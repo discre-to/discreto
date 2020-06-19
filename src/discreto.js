@@ -1296,7 +1296,7 @@ function write () {
     d.cookie = empty + ';sameSite=Lax;domain=' + domain
 
   // Set new one (single or wild)
-  expires.setDate(expires.getDate() + conf.cookie.days)
+  expires.setDate(expires.getDate() + parseInt(conf.cookie.days))
   cookie += ';path=' + path
   cookie += ';expires=' + expires.toUTCString()
   cookie += ';sameSite=' + (state.prefs._wild ? 'Lax' : 'Strict')
