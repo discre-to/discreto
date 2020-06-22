@@ -82,12 +82,12 @@
   display: flex;
   position: fixed;
   z-index: 1024;
-  width: 351px;
-  max-height: 90%;
-  max-width: 90%;
-  overflow: hidden;
   left: 12px;
   bottom: 12px;
+  width: 351px;
+  max-height: 95%;
+  max-width: 90%;
+  overflow: hidden;
   background: #e5e8e8;
   color: #002b36;
   border-radius: 8px;
@@ -113,19 +113,6 @@
   transform-origin: 80% 50%;
   transition: all ease-in 250ms 250ms;
 }
-#discreto.min .popup {
-  opacity: 0.5;
-  overflow: hidden;
-  left: -4px;
-  bottom: -4px;
-  max-width: 40px;
-  max-height: 40px;
-  border-radius: 20px;
-  transition: all ease-out 250ms 500ms, max-height ease-out 250ms, max-width ease-out 250ms 250ms, border-radius ease-out 500ms;
-}
-#discreto.min .popup:hover {
-  opacity: 1;
-}
 #discreto.right .popup {
   left: auto;
   right: 12px;
@@ -134,27 +121,76 @@
   right: auto;
   left: 4px;
 }
+#discreto.banner .popup {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 0;
+  left: 0;
+  bottom: 0;
+}
+#discreto.banner .consent {
+  padding-top: 23px;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+#discreto.banner .main, #discreto.banner .btns {
+  min-width: 351px;
+}
+#discreto.banner .prefs {
+  margin: 0;
+}
+#discreto.show.banner .popup {
+  max-width: 90%;
+  border-radius: 8px;
+}
+#discreto.show.banner .consent {
+  flex-direction: column;
+  padding-top: 48px;
+  align-items: stretch;
+}
+#discreto.show.banner .prefs {
+  margin: 1em 0;
+}
+#discreto.show.banner .btns {
+  flex: 0 0 auto;
+}
+#discreto.show.banner .popup, #discreto.center .popup, #discreto.bottom .popup {
+  left: 50%;
+  transform: translate(-50%);
+}
+#discreto.show.banner .popup, #discreto.center .popup {
+  bottom: 50%;
+  transform: translate(-50%, 50%);
+}
+#discreto.show .popup {
+  width: 421px;
+}
+#discreto.min .popup {
+  opacity: 0.5;
+  overflow: hidden;
+  max-width: 40px;
+  max-height: 40px;
+  border-radius: 20px;
+  left: -4px;
+  bottom: -4px;
+  transform: translate(0, 0);
+  transition: all ease-out 250ms 250ms, max-height ease-out 250ms, max-width ease-out 250ms 250ms, border-radius ease-out 500ms;
+}
+#discreto.min .popup:hover {
+  opacity: 1;
+}
+#discreto.min.hide .popup {
+  opacity: 0;
+}
 #discreto.min.right .popup {
   left: auto;
   right: -4px;
 }
-#discreto.center .popup {
-  left: 50%;
-  bottom: 50%;
-  transform: translate(-50%, 50%);
-}
-#discreto.min.center .popup {
-  left: -4px;
-  bottom: -4px;
-  transform: translate(0, 0);
-}
-#discreto.bottom .popup {
-  left: 50%;
-  transform: translateX(-50%);
-}
-#discreto.min.bottom .popup {
-  left: -4px;
-  transform: translateX(0);
+#discreto.min.hide.right .popup {
+  left: auto;
+  right: -40px;
 }
 #discreto.cognito0 .popup:after {
   transform: translateY(1px);
@@ -195,6 +231,12 @@
   overflow: hidden;
   opacity: 1;
   transition: opacity ease-in 250ms 500ms;
+}
+#discreto .main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 #discreto.min .consent {
   opacity: 0;

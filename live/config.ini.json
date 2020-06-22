@@ -1,11 +1,12 @@
 {
   "debug": true,
   "gui": {
-    "lang": "en",
-    "pos": "left",
-    "logo": false,
+    "lang":  "en",
+    "pos":   "left",
+    "hide":  false,
+    "logo":  false,
     "block": true,
-    "css": "../dist/discreto.css"
+    "css":   "../dist/discreto.css"
   },
   "cookie": {
     "name": "discreto_live",

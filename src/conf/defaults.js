@@ -20,6 +20,7 @@ export const conf = {
   // GUI
   gui: {
     pos:   'left',
+    hide:  false,
     logo:  false,
     block: false,
     urge:  false,

@@ -13,11 +13,11 @@
 export const fr = {
 
   // Messages
-  msg: {
+   msg: {
     first:  "<p><strong>Nous respectons votre vie privée</strong>, et c'est \
 pourquoi nous ne collectons pour l'instant que des statistiques anonymisées \
-de votre visite.</p><p>Vous pouvez continuer votre navigation ainsi \
-(<strong>Discreto</strong>), <strong>Tout accepter</strong> ou définir vos \
+de votre visite.</p><p>Vous pouvez <strong>Continuer</strong> votre navigation \
+ainsi, <strong>Tout accepter</strong> ou définir vos \
 <strong>Préférences</strong>.</p>",
     dnt:    "<p><strong>Nous respectons votre vie privée, et vous avez \
 activé l'option <em>Do Not Track</em></strong> de votre naviguateur, aussi \
@@ -31,13 +31,14 @@ sur ce site</strong>, puis cliquez sur <strong>Enregistrer</strong>.</p>\
 (<strong>Anonyme</strong>), ou même désactiver tous les services \
 (<strong>Invisible</strong>).</p>",
     cookie: "<p><strong>Vous avez activé {active} service(s)</strong> sur \
-{total}. Cliquez sur <strong>Préférences</strong> pour modifier vos choix.</p>",
+{total}.</p><p>Cliquez sur <strong>Préférences</strong> pour modifier vos \
+choix.</p>",
     anon:   "<p><strong>Vous naviguez anonymement</strong>, avec {active} \
-service(s) activé(s) sur {total}. Cliquez sur <strong>Préférences</strong> \
-pour modifier vos choix.</p>",
+service(s) activé(s) sur {total}.</p><p>Cliquez sur \
+<strong>Préférences</strong> pour modifier vos choix.</p>",
     ghost:  "<p><strong>Vous êtes actuellement invisible</strong> et aucun \
-service n'a été activé. Cliquez sur <strong>Préférences</strong> pour modifier \
-vos choix.</p>",
+service n'a été activé.</p><p>Cliquez sur <strong>Préférences</strong> pour \
+modifier vos choix.</p>",
     more:   "<p><strong>Afin d'améliorer la qualité de nos \
 services</strong>, nous avons ajouté {more} service(s).</p><p>Vous pouvez \
 le(s) <strong>Accepter</strong>, le(s) <strong>Refuser</strong> ou définir vos \
@@ -65,6 +66,7 @@ afficher la fenêtre&nbsp;:<br/>{src}</p>",
 
   // Buttons
   btns: {
+    continue:  "Continuer",
     discreto:  "Discreto",
     prefs:     "Préférences",
     cognito:   "Tout accepter",

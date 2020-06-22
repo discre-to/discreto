@@ -81,12 +81,12 @@
     display:       flex;
     position:      fixed;
     z-index:       1024;
-    width:         351px;
-    max-height:    90%;
-    max-width:     90%;
-    overflow:      hidden;
     left:          $popupMaxOffset;
     bottom:        $popupMaxOffset;
+    width:         $popupWidth;
+    max-height:    95%;
+    max-width:     90%;
+    overflow:      hidden;
     background:    $popupBack;
     color:         $popupColor;
     border-radius: $popupRadius;
@@ -119,24 +119,7 @@
 
   }
 
-  // Minified popup
-  &.min .popup {
-    opacity:       .5;
-    overflow:      hidden;
-    left:          $popupMinOffset;
-    bottom:        $popupMinOffset;
-    max-width:     $hatOverall;
-    max-height:    $hatOverall;
-    border-radius: $hatRadius;
-    transition:    all ease-out $delay 2*$delay,
-                   max-height ease-out $delay, max-width ease-out $delay $delay,
-                   border-radius ease-out 2*$delay;
-    &:hover {
-      opacity: 1;
-    }
-  }
-
-  // Positions
+  // Right corner
   &.right .popup {
     left:  auto;
     right: $popupMaxOffset;
@@ -146,27 +129,97 @@
       left:  $hatOffset;
     }
   }
+
+  // Banner
+  &.banner {
+    .popup {
+      width:         100%;
+      max-width:     100%;
+      border-radius: 0;
+      left:          0;
+      bottom:        0;
+    }
+    .consent {
+      padding-top:     $popupGutter+.5*$fontSize;
+      flex-direction:  row;
+      align-items:     flex-end;
+      justify-content: flex-end;
+      flex-wrap:       wrap;
+    }
+    .main, .btns {
+      min-width: $popupWidth;
+    }
+    .prefs {
+      margin: 0;
+    }
+  }
+  &.show.banner {
+    .popup {
+      max-width:     90%;
+      border-radius: $popupRadius;
+    }
+    .consent {
+      flex-direction: column;
+      padding-top:    $hatSize+$popupGutter;
+      align-items:    stretch;
+    }
+    .prefs {
+      margin: 1em 0;
+    }
+    .btns {
+      flex: 0 0 auto;
+    }
+  }
+
+  // Centered
+  &.show.banner .popup,
+  &.center .popup,
+  &.bottom .popup {
+    left:      50%;
+    transform: translate(-50%);
+  }
+  &.show.banner .popup,
+  &.center .popup {
+    bottom:    50%;
+    transform: translate(-50%, 50%);
+  }
+
+  // Show
+  &.show .popup {
+    width: $popupMaxWidth;
+  }
+
+  // Minified popup
+  &.min .popup {
+    opacity:       .5;
+    overflow:      hidden;
+    max-width:     $hatOverall;
+    max-height:    $hatOverall;
+    border-radius: $hatRadius;
+    left:          $popupMinOffset;
+    bottom:        $popupMinOffset;
+    transform:     translate(0, 0);
+    transition:    all ease-out $delay $delay,
+                   max-height ease-out $delay, max-width ease-out $delay $delay,
+                   border-radius ease-out 2*$delay;
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  // Hidden when minified
+  &.min.hide .popup {
+    opacity: 0;
+  }
+
+  // Right corner
   &.min.right .popup {
     left:  auto;
     right: $popupMinOffset;
   }
-  &.center .popup {
-    left:       50%;
-    bottom:     50%;
-    transform:  translate(-50%, 50%);
-  }
-  &.min.center .popup {
-    left:        $popupMinOffset;
-    bottom:      $popupMinOffset;
-    transform:   translate(0, 0);
-  }
-  &.bottom .popup {
-    left:       50%;
-    transform:  translateX(-50%);
-  }
-  &.min.bottom .popup {
-    left:      $popupMinOffset;
-    transform: translateX(0);
+  &.min.hide.right .popup {
+    left:  auto;
+    right: -$hatOverall;
   }
 
   // Cognition level
@@ -212,6 +265,17 @@
     // Fade in
     opacity:        1;
     transition:     opacity ease-in $delay 2*$delay;
+
+  }
+
+  // Main zone
+  .main {
+
+    // Flex
+    flex:           1;
+    display:        flex;
+    flex-direction: column;
+    overflow:       hidden;
 
   }
 

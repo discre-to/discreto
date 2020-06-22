@@ -16,7 +16,7 @@ export const en = {
   msg: {
     first:  "<p><strong>We respect your privacy</strong>, which is why we only \
 collect anonymized statistics of your visit at this time.</p><p>You can \
-continue browsing this way ((<strong>Discreto</strong>)), <strong>Accept \
+<strong>Continue</strong> browsing this way, <strong>Accept \
 all</strong> services or set your <strong>Preferences</strong>.</p>",
     dnt:    "<p><strong>We respect your privacy, and you have activated the \
 <em>Do Not Track</em> option of your browser</strong>, so no service has yet \
@@ -28,15 +28,15 @@ site</strong>, then click <strong>Save</strong>.</p><p>You can allow \
 anonymized statistics only (<strong>Anonymous</strong>), or even disable all \
 services (<strong>Invisible</strong>).</p>",
     cookie: "<p><strong>You have enabled {active} service(s)</strong> out of \
-{total}. Click <strong>Preferences</strong> to modify your choices.</p>",
+{total}.</p><p>Click <strong>Preferences</strong> to modify your choices.</p>",
     anon:   "<p><strong>Vous are currently browsing anonymously</strong>, with \
-{active} service(s) enabled out of {total}. Click <strong>Preferences</strong> \
-to modify your choices.</p>",
+{active} service(s) enabled out of {total}.</p><p>Click \
+<strong>Preferences</strong> to modify your choices.</p>",
     ghost:  "<p><strong>You are currently invisible</strong> with no service \
-enabled. Click <strong>Preferences</strong> to modify your choices.</p>",
+enabled.</p><p>Click <strong>Preferences</strong> to modify your choices.</p>",
     more:   "<p><strong>In order to improve the quality of our \
 services</strong>, we have added {more} service(s).</p><p>You can \
-<strong>Accept</strong> or <strong>Refuse</strong> them or set your \
+<strong>Accept</strong> or <strong>Refuse</strong> them, or set your \
 <strong>Preferences</strong>.</p>",
     remote: "<p><strong>Your preferences have been retrieved from your \
 previous choices</strong>, avec {active} service(s) enabled out of {total}.</p>\
@@ -61,6 +61,7 @@ this window:<br/>{src}</p>",
 
   // Buttons
   btns: {
+    continue:  "Continue",
     discreto:  "Discreto",
     prefs:     "Preferences",
     cognito:   "Accept all",

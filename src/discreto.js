@@ -657,7 +657,7 @@ function iframe (el, name, src) {
     service = conf.services[name],
     title   = dict.services[name] || name,
     cmd     = 'javascript:window.parent.postMessage',
-    msg, html
+    msg, ssrc, html
 
   // Localized
   if (service && service.name) {
@@ -685,7 +685,8 @@ sans-serif}big{font-size:3em}a{text-decoration:none;font-weight:600;color:\
 inherit}</style></head><body><div>"
 
   // Message
-  html += dict.msg[msg].replace('{title}', title).replace('{src}', src)
+  ssrc = src.replace(/\?.+$/, '')
+  html += dict.msg[msg].replace('{title}', title).replace('{src}', ssrc)
 
   // Buttons
   if (service) {
@@ -744,8 +745,8 @@ function mode (mode) {
  */
 function fetch () {
 
-  // Not enabled
-  if (!conf.cookie.share)
+  // Not enabled or DNT
+  if (!conf.cookie.share || state.dnt)
     return Promise.reject()
 
   // Fetch
@@ -957,23 +958,24 @@ function build () {
       { tag: 'div.overlay' },
       { tag: 'div.popup', child: [
         { tag: 'form:form.consent', child: [
-          { tag: 'logo:div.logo' },
-          { tag: 'head:div.head' },
-          { tag: 'prefs:div.prefs', child: [
-            { tag: 'mandatory:fieldset.field', child: [
-              { tag: 'div.item', child: [
-                { tag: 'label', child: [
-                  { tag:  'input',
-                    atts: { type: 'checkbox',
-                            checked: 'checked',
-                            disabled: 'disabled' } },
-                  { tag: 'span', html: dict.options.cookie } ] },
-                { tag: 'i',
-                  atts: { 'data-name': '_discreto' },
-                  evts: { click: info },
-                  html: dict.btns.cookie } ] } ] },
-            { tag: 'foot:p.credits',
-              html: dict.msg.thanks } ] },
+          { tag: 'div.main', child: [
+            { tag: 'logo:div.logo' },
+            { tag: 'head:div.head' },
+            { tag: 'prefs:div.prefs', child: [
+              { tag: 'mandatory:fieldset.field', child: [
+                { tag: 'div.item', child: [
+                  { tag: 'label', child: [
+                    { tag:  'input',
+                      atts: { type: 'checkbox',
+                              checked: 'checked',
+                              disabled: 'disabled' } },
+                    { tag: 'span', html: dict.options.cookie } ] },
+                  { tag: 'i',
+                    atts: { 'data-name': '_discreto' },
+                    evts: { click: info },
+                    html: dict.btns.cookie } ] } ] },
+              { tag: 'foot:p.credits',
+                html: dict.msg.thanks } ] } ] },
           { tag: 'btns:nav.btns',  child: [
             { tag: 'front:div.front' },
             { tag: 'back:div.back' } ] } ] } ] }
@@ -983,6 +985,7 @@ function build () {
   // GUI options
   if (state.dnt)      _.css(dom.box, 'dnt', true)
   if (conf.gui.block) _.css(dom.box, 'block', true)
+  if (conf.gui.hide)  _.css(dom.box, 'hide', true)
   if (conf.gui.pos)   _.css(dom.box, conf.gui.pos, true)
   if (conf.gui.logo) {
     dom.logo.appendChild(_.dom({
@@ -1109,7 +1112,8 @@ function buttons (mode) {
 
   let
     btns = BTNS[mode].split('|'),
-    box  = dom[mode === PREFS ? 'back' : 'front']
+    box  = dom[mode === PREFS ? 'back' : 'front'],
+    go   = mode === FIRST && !state.dnt
 
   // Clear
   while (box.firstChild)
@@ -1117,11 +1121,12 @@ function buttons (mode) {
 
   // Append new
   _.each(btns, (name) => {
+    let cname = name === 'discreto' && go ? 'continue' : name
     box.appendChild(_.dom({
       tag:  'button',
       atts: { type: 'button' },
       evts: { click: EVTS[name] },
-      html: dict.btns[name]
+      html: dict.btns[cname]
     }))
   })
 
