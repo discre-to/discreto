@@ -129,17 +129,21 @@
   bottom: 0;
 }
 #discreto.banner .consent {
-  padding-top: 23px;
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-end;
   flex-wrap: wrap;
 }
 #discreto.banner .main, #discreto.banner .btns {
-  min-width: 351px;
+  min-width: 281px;
 }
-#discreto.banner .prefs {
-  margin: 0;
+@media (min-width: 562px) {
+  #discreto.banner .consent {
+    padding-top: 23px;
+  }
+  #discreto.banner .prefs {
+    margin: 0;
+  }
 }
 #discreto.show.banner .popup {
   max-width: 90%;

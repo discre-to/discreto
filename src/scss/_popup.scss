@@ -140,17 +140,21 @@
       bottom:        0;
     }
     .consent {
-      padding-top:     $popupGutter+.5*$fontSize;
       flex-direction:  row;
       align-items:     flex-end;
       justify-content: flex-end;
       flex-wrap:       wrap;
     }
     .main, .btns {
-      min-width: $popupWidth;
+      min-width: $popupMinWidth;
     }
-    .prefs {
-      margin: 0;
+    @media (min-width: 2*$popupMinWidth) {
+      .consent {
+        padding-top: $popupGutter+.5*$fontSize;
+      }
+      .prefs {
+        margin: 0;
+      }
     }
   }
   &.show.banner {
