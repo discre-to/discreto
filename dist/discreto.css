@@ -135,9 +135,9 @@
   flex-wrap: wrap;
 }
 #discreto.banner .main, #discreto.banner .btns {
-  min-width: 281px;
+  min-width: 319px;
 }
-@media (min-width: 562px) {
+@media (min-width: 638px) {
   #discreto.banner .consent {
     padding-top: 23px;
   }
