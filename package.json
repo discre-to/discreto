@@ -1,6 +1,6 @@
 {
   "name": "discreto",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "you have the right to stay anonymous",
   "author": "Greg Deback",
   "license": "MIT",
@@ -35,14 +35,14 @@
     "esm": "^3.2.25",
     "expect.js": "^0.3.1",
     "fibers": "^4.0.3",
-    "jsdom": "^16.2.2",
+    "jsdom": "^16.3.0",
     "mini-css-extract-plugin": "^0.9.0",
     "mocha": "^7.2.0",
     "node-sass": "^4.14.1",
-    "sass": "^1.26.8",
+    "sass": "^1.26.10",
     "sass-loader": "^8.0.2",
     "utf-8-validate": "^5.0.2",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12"
   }
 }

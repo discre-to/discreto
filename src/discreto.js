@@ -139,7 +139,8 @@ function start (custom) {
 
   // Promise chain
   log('start')
-  return style().then(build)
+  return style()
+    .then(build)
     .then(() => {
 
       return read()
@@ -148,6 +149,8 @@ function start (custom) {
                                  () => Promise.resolve(FIRST)))
         .then(mode)
         .then(load)
+        .then(delay)
+        .then(popin)
 
     }).catch((err) => {
 
@@ -536,6 +539,11 @@ function save (local = false) {
   mode(COOKIE)
   load(true)
 
+  // Track
+  _.each(state.prefs, (name, on) => {
+    track('Service', name, 1 * on)
+  })
+
   // Write
   write()
   if (!local)
@@ -708,6 +716,83 @@ inherit}</style></head><body><div>"
 }
 
 /**
+ * Delay popup
+ * By time or y-scroll
+ *
+ * @return {Promise}       Resolve when it's time to show up
+ */
+function delay () {
+
+  let
+    val = conf.gui.wait
+
+  // Immediate
+  if (!val)
+    Promise.resolve()
+
+  // Delay!
+  if (typeof val === "string"
+      && val.substr(-2) === "px") {
+    let px = parseInt(val.substr(0, val.length - 2))
+    log('offset:', px)
+    return scrolling(px)
+  }
+
+  // Timeout
+  let ms = 1000 * parseFloat(val)
+  return new Promise((resolve, reject) => {
+    log('delay:', ms)
+    setTimeout(resolve, ms)
+  })
+
+}
+
+/**
+ * Initial popup
+ *
+ * @return {void}
+ */
+function popin () {
+
+  let
+    mode = state.mode
+
+  if (!SET.includes(mode))
+    popup()
+
+}
+
+/**
+ * Spy scrolling
+ *
+ * @param  {int}     delta  Scrolling delta
+ * @return {Promise}        Resolve when scroll reached
+ */
+function scrolling (delta) {
+
+  // Check if body is high enough
+  let
+    s  = d.body.scrollHeight,
+    h  = d.body.clientHeight,
+    y0 = w.scrollY,
+    dy = Math.min(delta, s - (h + y0))
+
+  if (!dy)
+    return Promise.resolve()
+
+  return new Promise((resolve, reject) => {
+    let f = () => {
+      if (Math.abs(w.scrollY - y0) < dy)
+        return
+      w.removeEventListener('scroll', f)
+      resolve()
+    }
+    w.addEventListener('scroll', f)
+  })
+
+}
+
+/**
  * Choose mode
  *
  * @param  {string} mode  Display mode
@@ -731,10 +816,6 @@ function mode (mode) {
   // Remote first, complete regarding DNT
   if (mode === ALMOST)
     more(state.dnt ? false : null)
-
-  // Show popup
-  if (!SET.includes(mode))
-    popup()
 
 }
 
@@ -1125,7 +1206,7 @@ function buttons (mode) {
     box.appendChild(_.dom({
       tag:  'button',
       atts: { type: 'button' },
-      evts: { click: EVTS[name] },
+      evts: { click: () => track('Button', name) && EVTS[name]() },
       html: dict.btns[cname]
     }))
   })
@@ -1376,10 +1457,12 @@ function load (reload = false) {
     if (!tags[service.tag]) {
       tags[service.tag] = {
         args: [], cmds: [],
+        services: [],
         anon: false
       }
     }
     tag = tags[service.tag]
+    tag.services.push(service)
 
     // Force anonymous
     tag.anon |= service.anon
@@ -1445,6 +1528,9 @@ function tag (name, tag) {
         })
       }
     }
+    _.each(tag.services, (service) => {
+      service.js = loader
+    })
     loader.on   = true
     loader.sent = []
 
@@ -1468,6 +1554,32 @@ function tag (name, tag) {
   } catch (e) {
     log('start failed:', name, e)
   }
+
+}
+
+/**
+ * Track choices
+ *
+ * @param  {string} action   Event action
+ * @param  {string} label    Event label
+ * @param  {float}  [value]  Optional value
+ * @return {bool}            Always true
+ */
+function track (action, label, value) {
+
+  if (!conf.cookie.track)
+    return true
+
+  let
+    name = conf.cookie.track,
+    js   = conf.services[name].js
+
+  if (!js || !js.track)
+    return true
+
+  log('track:', action, label, value)
+  js.track(action, label, value)
+  return true
 
 }
 

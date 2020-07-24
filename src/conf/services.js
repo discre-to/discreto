@@ -181,6 +181,15 @@ js.gtag = {
       let o = js.gtag.anon ? { anonymize_ip: true } : {}
       w.gtag('config', track, o)
     })
+  },
+
+  // Track events
+  track: (action, label, value) => {
+    w.gtag('event', action, {
+      event_category: 'discreto',
+      event_label:    label,
+      value
+    })
   }
 
 }
@@ -216,6 +225,11 @@ js.analyticsGA = {
   // Start
   start: (tracks) => {
     tracks.forEach((track) => w.ga('send', track))
+  },
+
+  // Track events
+  track: (action, label, value) => {
+    w.ga('send', 'event', 'discreto', action, label, value)
   }
 
 }
@@ -230,7 +244,8 @@ js.analyticsGA = {
 js.analytics = {
 
   init: js.gtag.init,
-  start: js.gtag.start
+  start: js.gtag.start,
+  track: js.gtag.track
 
 }
 
@@ -265,6 +280,11 @@ js.matomo = {
   // Events
   start: (tracks) => {
     tracks.forEach((track) => w._paq.push(track))
+  },
+
+  // Track events
+  track: (action, label, value) => {
+    w._paq.push([ 'trackEvent', 'discreto', action, label, value ])
   }
 
 }
