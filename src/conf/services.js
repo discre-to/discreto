@@ -446,19 +446,40 @@ js.twitterPixel = {
  */
 js.xiti = {
 
+  opts: null,
+
   // Init
-  init: (id) => {
+  init: (opts) => {
+    // Compat with previous format
+    if (typeof opts !== 'object') opts = { id: opts }
+    if (!opts.url) opts.url = 'logv2'
+    js.xiti.opts = opts
     let
-    p = 's=' + id + '&p=' + encodeURIComponent(d.location.pathname),
+    p = 's=' + opts.id + '&p=' + encodeURIComponent(d.location.pathname),
     h = new Date(), s = w.screen, i, r
     try { r = top.document.referrer } catch(e) { r = document.referrer }
     p += '&hl=' + h.getHours() + 'x' + h.getMinutes() + 'x' + h.getSeconds()
     if (parseFloat(navigator.appVersion) >= 4)
       p += '&r=' + s.width + 'x' + s.height + 'x' + s.pixelDepth + 'x' + s.colorDepth
     p += '&ref=' + r.replace(/[<>"]/g, '').replace(/&/g, '$')
+    p += '&Rdt=On'
     i = new Image(39, 25)
-    i.src = "http://logv2.xiti.com/hit.xiti?" + p
+    i.src = "http://" + opts.url + ".xiti.com/hit.xiti?" + p
     return null
+  },
+
+  // Track events
+  track: (action, label, value) => {
+    let
+    opts = js.xiti.opts,
+    p = 's=' + opts.id + '&pclick=' + encodeURIComponent(d.location.pathname),
+    h = new Date(), i
+    p += '&hl=' + h.getHours() + 'x' + h.getMinutes() + 'x' + h.getSeconds()
+    p += '&click=A&p=discreto::' + action + '::' + label
+    if (value !== undefined) p += '::' + value
+    p += '&Rdt=On'
+    i = new Image(39, 25)
+    i.src = "http://" + opts.url + ".xiti.com/hit.xiti?" + p
   }
 
 }
