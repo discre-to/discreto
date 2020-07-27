@@ -1529,7 +1529,7 @@ function tag (name, tag) {
       }
     }
     _.each(tag.services, (service) => {
-      service.js = loader
+      service.track = loader.track
     })
     loader.on   = true
     loader.sent = []
@@ -1567,18 +1567,30 @@ function tag (name, tag) {
  */
 function track (action, label, value) {
 
-  if (!conf.cookie.track)
-    return true
-
   let
-    name = conf.cookie.track,
-    js   = conf.services[name].js
+    names = conf.cookie.track
 
-  if (!js || !js.track)
+  // No track
+  if (!names)
     return true
 
-  log('track:', action, label, value)
-  js.track(action, label, value)
+  // Multiple
+  if (typeof names === 'string')
+    names = [ names ]
+
+  // Try all
+  names.forEach((name) => {
+
+    let service = conf.services[name]
+
+    if (!service || !service.track)
+      return
+
+    log('track:', action, label, value)
+    service.track(action, label, value)
+
+  })
+
   return true
 
 }
