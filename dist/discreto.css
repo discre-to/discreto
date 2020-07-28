@@ -44,6 +44,9 @@
 }
 #discreto button, #discreto p, #discreto li, #discreto dt {
   font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
 }
 #discreto a {
   font-weight: 300;
@@ -185,14 +188,14 @@
 #discreto.min .popup:hover {
   opacity: 1;
 }
-#discreto.min.hide .popup {
+#discreto.min.autohide .popup {
   opacity: 0;
 }
 #discreto.min.right .popup {
   left: auto;
   right: -4px;
 }
-#discreto.min.hide.right .popup {
+#discreto.min.autohide.right .popup {
   left: auto;
   right: -40px;
 }

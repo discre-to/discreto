@@ -1066,7 +1066,7 @@ function build () {
   // GUI options
   if (state.dnt)      _.css(dom.box, 'dnt', true)
   if (conf.gui.block) _.css(dom.box, 'block', true)
-  if (conf.gui.hide)  _.css(dom.box, 'hide', true)
+  if (conf.gui.hide)  _.css(dom.box, 'autohide', true)
   if (conf.gui.pos)   _.css(dom.box, conf.gui.pos, true)
   if (conf.gui.logo) {
     dom.logo.appendChild(_.dom({

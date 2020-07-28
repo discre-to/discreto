@@ -28,6 +28,9 @@
 
   button, p, li, dt {
     font-family: inherit;
+    font-size:   inherit;
+    font-weight: inherit;
+    line-height: inherit;
   }
 
   // Links
@@ -212,7 +215,7 @@
   }
 
   // Hidden when minified
-  &.min.hide .popup {
+  &.min.autohide .popup {
     opacity: 0;
   }
 
@@ -221,7 +224,7 @@
     left:  auto;
     right: $popupMinOffset;
   }
-  &.min.hide.right .popup {
+  &.min.autohide.right .popup {
     left:  auto;
     right: -$hatOverall;
   }
