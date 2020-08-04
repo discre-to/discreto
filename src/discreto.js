@@ -728,7 +728,7 @@ function delay () {
 
   // Immediate
   if (!val)
-    Promise.resolve()
+    return Promise.resolve()
 
   // Delay!
   if (typeof val === "string"
