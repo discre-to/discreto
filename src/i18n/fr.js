@@ -54,14 +54,15 @@ votre consentement.</p><p>Vous pouvez le(s) <strong>Accepter</strong>, le(s) \
 <strong>Refuser</strong> ou définir vos <strong>Préférences</strong>.</p>",
     error:  "<p>Impossible de récupérer les informations, veuillez \
 ré-essayer.</p>",
-    thanks: "Merci <a target=\"_blank\" \
-href=\"https://discre.to\">discreto</a> (<a target=\"_blank\" \
-href=\"https://discre.to/abuse\">signaler un abus</a>)",
-    undef:  "<big>🤕</big><p>Aucun consentement n'est prévu pour {title}, cette \
-fenêtre a été bloquée&nbsp;:<br/>{src}</p>",
+    thanks: "Merci <a target=\"_blank\" href=\"https://discre.to\" \
+rel=\"nofollow\">discreto</a> (<a target=\"_blank\" \
+href=\"https://discre.to/abuse\" rel=\"nofollow\">signaler un abus</a>)",
+    undef:  "<big>🤕</big><p>Aucun consentement n'est prévu pour {title}, \
+cette fenêtre a été bloquée&nbsp;:<br/>{src}</p>",
     choose: "<big>🤔</big><p>Acceptez les conditions du service {title} pour \
 afficher la fenêtre&nbsp;:<br/>{src}</p>",
-    block:  "<big>🤫</big><p>Vous avez choisi de bloquer les fenêtres {title}</p>",
+    block:  "<big>🤫</big><p>Vous avez choisi de bloquer les fenêtres \
+{title}</p>",
   },
 
   // Buttons

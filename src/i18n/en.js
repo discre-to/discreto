@@ -49,9 +49,9 @@ your consent.</p><p>You can <strong>Accept</strong> or <strong>Refuse</strong> \
 them, or set your <strong>Preferences</strong>.</p>",
     error:  "<p>Cannot gather information about this service, please try again \
 later.</p>",
-    thanks: "Thank you <a target=\"_blank\" \
-href=\"https://discre.to\">discreto</a> (<a target=\"_blank\" \
-href=\"https://discre.to/abuse\">report abuse</a>)",
+    thanks: "Thank you <a target=\"_blank\" href=\"https://discre.to\" \
+rel=\"nofollow\">discreto</a> (<a target=\"_blank\" \
+href=\"https://discre.to/abuse\" rel=\"nofollow\">report abuse</a>)",
     undef:  "<big>🤕</big><p>No consent has been asked for {title}, this \
 window has been blocked:<br/>{src}</p>",
     choose: "<big>🤔</big><p>Please accept {title} terms of service to show \

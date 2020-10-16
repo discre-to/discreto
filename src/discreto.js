@@ -1070,7 +1070,7 @@ function build () {
   if (conf.gui.pos)   _.css(dom.box, conf.gui.pos, true)
   if (conf.gui.logo) {
     dom.logo.appendChild(_.dom({
-      tag: 'img', atts: { src: conf.gui.logo }
+      tag: 'img', atts: { alt: '', src: conf.gui.logo }
     }))
   }
 
