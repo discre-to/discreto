@@ -198,6 +198,34 @@ describe('discreto, first time', () => {
   })
 
   /**
+   * Refuse all
+   *
+   * @covers discreto.select(false)
+   */
+  describe('refuse all', () => {
+
+    // Refuse all
+    it('disables everything', () => {
+
+      // Click on Discreto
+      _.$$('#discreto .btns .front button')[2].click()
+      expect(w.discreto.state.prefs.anon).to.be(false)
+      expect(w.discreto.state.prefs.cognito).to.be(false)
+      expect(w.discreto.state.mode).to.be('cookie')
+
+    })
+
+    // Revert
+    it('reverts', () => {
+
+      w.discreto.mode('first')
+      w.discreto.popup()
+
+    })
+
+  })
+
+  /**
    * Accept all
    *
    * @covers discreto.select(true)
@@ -208,7 +236,7 @@ describe('discreto, first time', () => {
     it('enables everything', () => {
 
       // Click on Discreto
-      _.$$('#discreto .btns .front button')[2].click()
+      _.$$('#discreto .btns .front button')[3].click()
       expect(w.discreto.state.prefs.anon).to.be(true)
       expect(w.discreto.state.prefs.cognito).to.be(true)
       expect(w.discreto.state.mode).to.be('cookie')
@@ -978,6 +1006,35 @@ describe('discreto DNT, first time', () => {
   })
 
   /**
+   * Refuse all
+   *
+   * @covers discreto.select(false)
+   * @duplicate Same DNT/no-DNT
+   */
+  describe('refuse all', () => {
+
+    // Refuse all
+    it('disables everything', () => {
+
+      // Click on Discreto
+      _.$$('#discreto .btns .front button')[2].click()
+      expect(w.discreto.state.prefs.anon).to.be(false)
+      expect(w.discreto.state.prefs.cognito).to.be(false)
+      expect(w.discreto.state.mode).to.be('cookie')
+
+    })
+
+    // Revert
+    it('reverts', () => {
+
+      w.discreto.mode('first')
+      w.discreto.popup()
+
+    })
+
+  })
+
+  /**
    * Accept all
    *
    * @covers discreto.select(true)
@@ -989,7 +1046,7 @@ describe('discreto DNT, first time', () => {
     it('enables everything', () => {
 
       // Click on Discreto
-      _.$$('#discreto .btns .front button')[2].click()
+      _.$$('#discreto .btns .front button')[3].click()
       expect(w.discreto.state.prefs.anon).to.be(true)
       expect(w.discreto.state.prefs.cognito).to.be(true)
       expect(w.discreto.state.mode).to.be('cookie')
@@ -1226,7 +1283,7 @@ describe('discreto shared, first time', () => {
       expect(w.discreto.state.prefs._share).to.be(true)
 
       // Click on Accept all
-      _.$$('#discreto .btns .front button')[2].click()
+      _.$$('#discreto .btns .front button')[3].click()
       expect(w.discreto.state.prefs.anon).to.be(true)
       expect(w.discreto.state.prefs.cognito).to.be(true)
       expect(w.discreto.state.mode).to.be('cookie')

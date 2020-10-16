@@ -519,8 +519,17 @@
     text-align:      right;
     transform-style: preserve-3d;
     height:          $buttonHeight;
-    @media (max-width: 320px) {
+    transition:      height ease-in $delay;
+    @media (max-width: $popupWidth+20px) {
       height: 2*$buttonHeight+$buttonMargin;
+      .front button:nth-child(3) {
+        border-top-right-radius:    $buttonRadius;
+        border-bottom-right-radius: $buttonRadius;
+      }
+      .front button:nth-child(4) {
+        border-top-left-radius:    $buttonRadius;
+        border-bottom-left-radius: $buttonRadius;
+      }
     }
 
     // Flip
@@ -573,6 +582,9 @@
 
   // Flap
   &.show .btns {
+    @media (max-width: $popupWidth+20px) {
+      height: $buttonHeight;
+    }
     div.back {
       transform: rotateX(0);
     }

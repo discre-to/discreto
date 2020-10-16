@@ -28,9 +28,9 @@ const
 
   // Buttons
   BTNS   = {
-    first:  'discreto|prefs|cognito',
+    first:  'discreto|prefs|incognito|cognito',
     cookie: 'prefs|ok',
-    remote: 'discreto|prefs|keep',
+    remote: 'discreto|prefs|incognito|keep',
     more:   'deny|prefs|allow',
     almost: 'deny|prefs|allow',
     prefs:  'anonymous|ghost|save'
@@ -40,10 +40,11 @@ const
   EVTS   = {
     ghost:     () => select(false),
     anonymous: () => select(null),
-    discreto:  () => select(null) && save(),
-    cognito:   () => select(true) && save(),
-    allow:     () => more(true)   && save(),
-    deny:      () => more(false)  && save(),
+    discreto:  () => select(null)  && save(),
+    cognito:   () => select(true)  && save(),
+    incognito: () => select(false) && save(),
+    allow:     () => more(true)    && save(),
+    deny:      () => more(false)   && save(),
     save:      () => save(),
     keep:      () => save(),
     prefs:     () => prefs(),

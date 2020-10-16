@@ -56,9 +56,9 @@ $linkWeight:      300;
 $linkDecoration:  underline;
 
 // Popup
-$popupMinWidth:   319px;
-$popupWidth:      351px; // odd, to avoid aliasing with transform()
-$popupMaxWidth:   421px;
+$popupMinWidth:   409px;
+$popupWidth:      429px; // odd, to avoid aliasing with transform()
+$popupMaxWidth:   429px;
 $popupBack:       $colorBack;
 $popupAlt:        lighten($base01, 30%);
 $popupColor:      $colorFront;
