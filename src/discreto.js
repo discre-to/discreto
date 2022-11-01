@@ -3,7 +3,7 @@
  * / _` | (_-</ _| '_/ -_)|  _/ _ \
  * \__,_|_/__/\__|_| \___(_)__\___/
  *
- * Copyright © 2020 - MIT License
+ * Copyright (c) 2022 - MIT License
  * Greg Deback <greg@discre.to>
  * <https://discre.to>
  */
@@ -1075,9 +1075,6 @@ function build () {
     }))
   }
 
-  // Preferences buttons
-  buttons(PREFS, true)
-
   // Allow subdomains
   if (conf.cookie.wild) {
     conf.services._wild = {
@@ -1096,6 +1093,9 @@ function build () {
       types: [ 'advanced' ]
     }
   }
+
+  // Preferences buttons
+  buttons(PREFS, true)
 
   // Fieldsets
   dom.items = {}
@@ -1522,11 +1522,15 @@ function tag (name, tag) {
       if (atts) {
         if (typeof atts === 'string')
           atts = { src: atts }
-        script = _.script(atts.src)
+        script = _.dom({ tag: 'script', atts: { async: true } })
         _.each(atts, (key, val) => {
           if (key === 'src') return
           script.setAttribute(key, val)
         })
+        if (loader.onload)
+          script.onload = loader.onload(script)
+        script.src = atts.src
+        ;(d.body || d.head).appendChild(script)
       }
     }
     _.each(tag.services, (service) => {

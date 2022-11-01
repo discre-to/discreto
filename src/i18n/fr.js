@@ -3,7 +3,7 @@
  * / _` | (_-</ _| '_/ -_)|  _/ _ \
  * \__,_|_/__/\__|_| \___(_)__\___/
  *
- * Copyright © 2020 - MIT License
+ * Copyright (c) 2022 - MIT License
  * Greg Deback <greg@discre.to>
  * <https://discre.to>
  *
@@ -134,6 +134,8 @@ concernant.</p>\
     twitterPixel:        "Twitter Pixel",
     xiti:                "Xiti",
     'xiti-anon':         "Xiti (anonymisé)",
+    yahooDots:           "Verizon Analytics",
+    verizon:             "Verizon Analytics",
     // Share
     addthis:             "AddThis",
     addtoany:            "AddToAny",
@@ -158,6 +160,7 @@ concernant.</p>\
     adwords:             "AdWords",
     amazonAds:           "Amazon",
     criteo:              "Criteo",
+    linkedinInsight:     "LinkedIn Insight & Conversion",
     microsoftAds:        "Microsoft Advertising (ex Bing Ads)",
     twitterAds:          "Twitter Ads",
     // Social
@@ -172,6 +175,7 @@ concernant.</p>\
     'googleMaps-api':    "Google Maps (API)",
     'googleMaps':        "Google Maps (embed)",
     googleFonts:         "Google Fonts",
+    optimize:            "Google Optimize",
     typekit:             "TypeKit",
     recaptcha:           "Google ReCaptcha (v3)",
     recaptchaV2:         "Google ReCaptcha (v2)"

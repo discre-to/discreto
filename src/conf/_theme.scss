@@ -3,7 +3,7 @@
  * / _` | (_-</ _| '_/ -_)|  _/ _ \
  * \__,_|_/__/\__|_| \___(_)__\___/
  *
- * Copyright © 2020 - MIT License
+ * Copyright (c) 2022 - MIT License
  * Greg Deback <greg@discre.to>
  * <https://discre.to>
  *
@@ -56,7 +56,7 @@ $linkWeight:      300;
 $linkDecoration:  underline;
 
 // Popup
-$popupMinWidth:   409px;
+$popupMinWidth:   383px; // 768/2-1
 $popupWidth:      429px; // odd, to avoid aliasing with transform()
 $popupMaxWidth:   429px;
 $popupBack:       $colorBack;
@@ -85,14 +85,14 @@ $sliderWidth:     32px;
 $sliderHeight:    17px;
 $sliderColor:     $colorOff;
 $sliderBorder:    1px;
-$sliderRadius:    $sliderHeight/2 + $sliderBorder;
+$sliderRadius:    calc($sliderHeight/2) + $sliderBorder;
 $checkWidth:      12px;
 $checkHeight:     12px;
 $checkColor:      $colorOff;
 $checkNever:      $colorFront;
 $checkActive:     $colorAlt;
 $checkBorder:     1px;
-$checkRadius:     $checkHeight/2 + $checkBorder;
+$checkRadius:     calc($checkHeight/2) + $checkBorder;
 $checkOffset:     3px;
 $checkNewColor:   $colorBack;
 $checkNewWeight:  600;
@@ -136,7 +136,7 @@ $alertColor:      $colorFront;
 $hatSize:         32px;
 $hatOffset:       4px;
 $hatOverall:      $hatSize + 2*$hatOffset;
-$hatRadius:       $hatOverall/2;
+$hatRadius:       calc($hatOverall/2);
 
 // Animation
 $delay:           250ms;

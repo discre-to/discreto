@@ -3,7 +3,7 @@
  * / _` | (_-</ _| '_/ -_)|  _/ _ \
  * \__,_|_/__/\__|_| \___(_)__\___/
  *
- * Copyright © 2020 - MIT License
+ * Copyright (c) 2022 - MIT License
  * Greg Deback <greg@discre.to>
  * <https://discre.to>
  *
@@ -17,7 +17,8 @@
 
   // Reset
   *, *:after, *:before {
-    box-sizing: border-box;
+    box-sizing:     border-box;
+    vertical-align: initial;
   }
 
   // Font face
@@ -25,12 +26,14 @@
   font-size:   $fontSize;
   font-weight: $fontWeight;
   line-height: $fontLineHeight;
+  text-align:  left;
 
-  button, p, li, dt {
+  p, ul, ol, dl, li, dt, dd, button, label {
     font-family: inherit;
     font-size:   inherit;
     font-weight: inherit;
     line-height: inherit;
+    text-align:  inherit;
   }
 
   // Links
@@ -48,6 +51,11 @@
   // Strong
   strong {
     font-weight: $fontBoldWeight;
+    font-style:  normal;
+  }
+  em {
+    font-weight: $fontWeight;
+    font-style:  italic;
   }
 
   // Overlay mask

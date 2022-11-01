@@ -1,6 +1,6 @@
 {
   "name": "discreto",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "you have the right to stay anonymous",
   "author": "Greg Deback",
   "license": "MIT",
@@ -25,24 +25,26 @@
     "build": "webpack",
     "sass": "sass src/discreto.scss dist/discreto.css",
     "watch": "sass --watch src:dist",
-    "test": "mocha --require esm -u bdd -R dot --no-warnings test/node.js"
+    "test": "mocha --require @babel/register -u bdd -R dot --no-warnings test/node.js"
   },
   "devDependencies": {
-    "base64-inline-loader": "^1.1.1",
-    "bufferutil": "^4.0.6",
-    "canvas": "^2.9.0",
-    "css-loader": "^3.6.0",
+    "@babel/preset-env": "^7.19.4",
+    "@babel/register": "^7.18.9",
+    "bufferutil": "^4.0.7",
+    "canvas": "^2.10.2",
+    "css-loader": "^6.7.1",
     "esm": "^3.2.25",
     "expect.js": "^0.3.1",
-    "fibers": "^4.0.3",
-    "jsdom": "^16.7.0",
-    "mini-css-extract-plugin": "^0.9.0",
-    "mocha": "^7.2.0",
-    "node-sass": "^4.14.1",
-    "sass": "^1.49.7",
-    "sass-loader": "^8.0.2",
-    "utf-8-validate": "^5.0.8",
-    "webpack": "^4.46.0",
-    "webpack-cli": "^3.3.12"
+    "fibers": "^5.0.3",
+    "jsdom": "^20.0.2",
+    "mini-css-extract-plugin": "^2.6.1",
+    "mocha": "^10.1.0",
+    "node-sass": "^7.0.3",
+    "sass": "^1.55.0",
+    "sass-loader": "^13.1.0",
+    "url-loader": "^4.1.1",
+    "utf-8-validate": "^5.0.10",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   }
 }

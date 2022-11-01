@@ -3,7 +3,7 @@
  * / _` | (_-</ _| '_/ -_)|  _/ _ \
  * \__,_|_/__/\__|_| \___(_)__\___/
  *
- * Copyright © 2020 - MIT License
+ * Copyright (c) 2022 - MIT License
  * Greg Deback <greg@discre.to>
  * <https://discre.to>
  *
@@ -149,9 +149,9 @@ export function script (src, async = true, before = true) {
   let
     first  = d.querySelector('script'),
     script = dom({
-    tag:  'script',
-    atts: { async, src }
-  })
+      tag:  'script',
+      atts: { async, src }
+    })
 
   // Insert or append
   if (before)

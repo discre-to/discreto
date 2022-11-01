@@ -3,7 +3,7 @@
  * / _` | (_-</ _| '_/ -_)|  _/ _ \
  * \__,_|_/__/\__|_| \___(_)__\___/
  *
- * Copyright © 2020 - MIT License
+ * Copyright (c) 2022 - MIT License
  * Greg Deback <greg@discre.to>
  * <https://discre.to>
  *
@@ -168,7 +168,7 @@ js.gtag = {
   // Init
   init: (id, anon) => {
     if (anon) js.gtag.anon = true
-    if (w.gtag) return null
+    if (w.gtag) return null // load only once
     w.dataLayer = w.dataLayer || [];
     let n = w.gtag = function () { w.dataLayer.push(arguments) }
     n('js', new Date())
@@ -274,12 +274,12 @@ js.matomo = {
     q.push(['setSiteId', opts.id ])
     if (opts.url.charAt(opts.url.length - 1) !== '/')
       opts.url += '/'
-    return opts.url + "piwik.js"
+    return (opts.cdn || opts.url) + "matomo.js"
   },
 
   // Events
   start: (tracks) => {
-    tracks.forEach((track) => w._paq.push(track))
+    tracks.forEach((track) => w._paq.push([ track ]))
   },
 
   // Track events
@@ -480,6 +480,44 @@ js.xiti = {
     p += '&Rdt=On'
     i = new Image(39, 25)
     i.src = "http://" + opts.url + ".xiti.com/hit.xiti?" + p
+  }
+
+}
+
+/**
+ * Verizon Analytics
+ *
+ * @see https://developer.yahooinc.com/native/guide/dottags/installing-tags/
+ *
+ * (function(w,d,t,r,u){
+ * w[u]=w[u]||[];w[u].push({'projectId':'{PROJECT_ID}','properties':{'pixelId':'{PIXEL_ID}'}});
+ * var s=d.createElement(t);s.src=r;s.async=true;s.onload=s.onreadystatechange=function(){
+ * var y,rs=this.readyState,c=w[u];if(rs&&rs!="complete"&&rs!="loaded"){return}
+ * try{y=YAHOO.ywa.I13N.fireBeacon;w[u]=[];w[u].push=function(p){y([p])};y(c)}catch(e){}};
+ * var scr=d.getElementsByTagName(t)[0],par=scr.parentNode;par.insertBefore(s,scr)})
+ * (window,document,"script","https://s.yimg.com/wi/ytc.js","dotq");
+ *
+ */
+js.yahooDot = js.verizon = {
+
+  // Init
+  init: (opts) => {
+    w.dotq = w.dotq || []
+    w.dotq.push({ projectId: opts.project, properties: { pixelId: opts.id } })
+    return "https://s.yimg.com/wi/ytc.js"
+  },
+
+  // Onload
+  onload: (script) => {
+    var y, c = w.dotq
+    console.warn('special case', YAHOO)
+    try {
+      y = YAHOO.ywa.I13N.fireBeacon
+      w.dotq = []
+      w.dotq.push = function(p) { y([ p ]) }
+      y(c)
+      console.warn('now', w.dotq)
+    } catch(e) {}
   }
 
 }
@@ -754,6 +792,31 @@ js.microsoftAds = {
  */
 
 /**
+ * LinkedIn Insight & Conversion Tracking
+ *
+ * @see https://www.linkedin.com/help/lms/answer/a489169
+ *
+ * _linkedin_partner_id = "{LINKEDIN_ID}";
+ * window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+ * window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+ * (function(){var s = document.getElementsByTagName("script")[0];
+ * var b = document.createElement("script");
+ * b.type = "text/javascript";b.async = true;
+ * b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+ * s.parentNode.insertBefore(b, s);})();
+ */
+js.linkedinInsight = {
+
+  init: (id) => {
+    w._linkedin_partner_id = id
+    w._linkedin_data_partner_ids = w._linkedin_data_partner_ids || []
+    w._linkedin_data_partner_ids.push(id)
+    return "https://snap.licdn.com/li.lms-analytics/insight.min.js"
+  }
+
+}
+
+/**
  * Disqus
  *
  * @version universal
@@ -827,5 +890,14 @@ js.recaptcha = {
 js.recaptchaV2 = {
 
   init: () => "https://www.google.com/recaptcha/api.js"
+
+}
+
+/**
+ * Google Optimize
+ */
+js.optimize = {
+
+  init: (key) => "https://www.googleoptimize.com/optimize.js?id=" + key
 
 }

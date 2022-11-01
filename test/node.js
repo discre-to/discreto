@@ -3,7 +3,7 @@
  * / _` | (_-</ _| '_/ -_)|  _/ _ \
  * \__,_|_/__/\__|_| \___(_)__\___/
  *
- * Copyright © 2020 - MIT License
+ * Copyright (c) 2022 - MIT License
  * Greg Deback <greg@discre.to>
  * <https://discre.to>
  *
@@ -16,7 +16,8 @@ import jsdom  from 'jsdom'
 
 // Fake DOM
 global.jsdom     = new jsdom.JSDOM('<!doctype html>\
-<html><body><script src="about:blank"></script></body></html>');
+<html><body><script src="about:blank"></script></body></html>',
+                                   { url: 'http://localhost' })
 
 // Window, document & navigator
 global.window    = global.jsdom.window
