@@ -510,13 +510,11 @@ js.yahooDot = js.verizon = {
   // Onload
   onload: (script) => {
     var y, c = w.dotq
-    console.warn('special case', YAHOO)
     try {
       y = YAHOO.ywa.I13N.fireBeacon
       w.dotq = []
       w.dotq.push = function(p) { y([ p ]) }
       y(c)
-      console.warn('now', w.dotq)
     } catch(e) {}
   }
 

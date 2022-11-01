@@ -134,7 +134,7 @@ concernant.</p>\
     twitterPixel:        "Twitter Pixel",
     xiti:                "Xiti",
     'xiti-anon':         "Xiti (anonymisé)",
-    yahooDots:           "Verizon Analytics",
+    yahooDot:            "Verizon Analytics",
     verizon:             "Verizon Analytics",
     // Share
     addthis:             "AddThis",

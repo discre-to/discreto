@@ -128,7 +128,7 @@ disabled.</strong></p>"
     twitterPixel:        "Twitter Pixel",
     xiti:                "Xiti",
     'xiti-anon':         "Xiti (anonymized)",
-    yahooDots:           "Verizon Analytics",
+    yahooDot:            "Verizon Analytics",
     verizon:             "Verizon Analytics",
     // Share
     addthis:             "AddThis",

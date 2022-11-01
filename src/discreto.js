@@ -1528,7 +1528,7 @@ function tag (name, tag) {
           script.setAttribute(key, val)
         })
         if (loader.onload)
-          script.onload = loader.onload(script)
+          script.onload = () => loader.onload(script)
         script.src = atts.src
         ;(d.body || d.head).appendChild(script)
       }
