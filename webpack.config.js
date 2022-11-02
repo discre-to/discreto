@@ -38,8 +38,7 @@ module.exports = {
       },
       {
         test: /\.(jpe?g|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-        type: 'asset/inline',
-        use:  { loader: 'url-loader', options: { limit: 8192 } }
+        type: 'asset/inline'
       }
     ]
   }
