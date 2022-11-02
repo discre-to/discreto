@@ -167,7 +167,7 @@ disabled.</strong></p>"
     facebookComments:    "Facebook Comments",
     // Misc
     'googleMaps-api':    "Google Maps (API)",
-    'googleMaps':        "Google Maps (embed)",
+    googleMaps:          "Google Maps (embed)",
     googleFonts:         "Google Fonts",
     optimize:            "Google Optimize",
     typekit:             "TypeKit",
