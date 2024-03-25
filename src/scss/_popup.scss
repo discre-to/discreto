@@ -412,6 +412,7 @@
       }
     }
     span {
+      display:  block;
       position: relative;
       &:before {
         content:        "";
@@ -509,6 +510,18 @@
       margin:     0;
       padding:    0;
       list-style: square inside;
+      li {
+        margin:  0;
+        padding: 0;
+        &:before {
+          display: none;
+        }
+      }
+    }
+
+    // Small
+    small {
+      font-size: .9em;
     }
 
     // Misusage warning
