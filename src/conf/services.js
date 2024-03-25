@@ -3,7 +3,7 @@
  * / _` | (_-</ _| '_/ -_)|  _/ _ \
  * \__,_|_/__/\__|_| \___(_)__\___/
  *
- * Copyright (c) 2022 - MIT License
+ * Copyright (c) 2024 - MIT License
  * Greg Deback <greg@discre.to>
  * <https://discre.to>
  *
@@ -177,6 +177,14 @@ js.gtag = {
 
   // Start
   start: (tracks) => {
+    // Google consent (v2)
+    let consent = js.gtag.anon ? 'denied' : 'granted'
+    w.gtag('consent', 'default', {
+      'ad_user_data':       consent,
+      'ad_personalization': consent,
+      'ad_storage':         consent,
+      'analytics_storage':  consent
+    })
     tracks.forEach((track) => {
       let o = js.gtag.anon ? { anonymize_ip: true } : {}
       w.gtag('config', track, o)
