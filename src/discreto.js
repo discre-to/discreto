@@ -1615,4 +1615,5 @@ function log (...args) {
 w.discreto = { start, clean, when, update, prefs, popup, mode, conf, state }
 
 // Init on load
-w.addEventListener('load', init, true)
+if (document.readyState === 'complete') init()
+else w.addEventListener('load', init, true)

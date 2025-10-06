@@ -137,7 +137,7 @@ js.gtm = {
   // Init
   init: (id) => {
     let now = new Date().getTime()
-    w.dataLayer = w.dataLayer = []
+    w.dataLayer = w.dataLayer || []
     w.dataLayer.push({ event: 'gtm.js', 'gtm.start': now })
     // @warning don't define gtag() here: gtag/js !== gtm.js
     // if (!w.gtag) w.gtag = function () { w.dataLayer.push(arguments) }
