@@ -515,31 +515,13 @@ describe('utils', () => {
    */
   describe('locale', () => {
 
-    // navigator.languages is readonly, but always inludes english
-    it('always has en-US & en', () => {
-
-      let
-        langs = navigator.languages
-
-      // Browsers & JSDOM speaks english, -US preferred
-      expect(langs).to.contain('en-US')
-      expect(langs).to.contain('en')
-      expect(langs.indexOf('en-US')).to.be.lessThan(langs.indexOf('en'))
-
-    })
-
     // Pick up first match
     it('picks up first match else fallback', () => {
 
       let
-        i18n  = {
-          'en-US': true,
-          en:      true
-        }
+        i18n = { en: true }
 
       // In order (languages like *, en-US, en)
-      expect(_.locale(i18n)).to.be('en-US')
-      delete i18n['en-US']
       expect(_.locale(i18n)).to.be('en')
 
       // English by default

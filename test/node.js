@@ -19,10 +19,9 @@ global.jsdom     = new jsdom.JSDOM('<!doctype html>\
 <html><body><script src="about:blank"></script></body></html>',
                                    { url: 'http://localhost' })
 
-// Window, document & navigator
+// Window & document
 global.window    = global.jsdom.window
 global.document  = global.window.document
-global.navigator = global.window.navigator
 
 // Expect
 global.expect    = expect
