@@ -1,3 +1,5 @@
+@use "../conf/theme";
+
 /**    _ _                 _
  *  __| (_)___ __ _ _ ___ | |_ ___
  * / _` | (_-</ _| '_/ -_)|  _/ _ \
@@ -22,10 +24,10 @@
   }
 
   // Font face
-  font-family: $fontFamily;
-  font-size:   $fontSize;
-  font-weight: $fontWeight;
-  line-height: $fontLineHeight;
+  font-family: theme.$fontFamily;
+  font-size:   theme.$fontSize;
+  font-weight: theme.$fontWeight;
+  line-height: theme.$fontLineHeight;
   text-align:  left;
 
   p, ul, ol, dl, li, dt, dd, button, label {
@@ -38,23 +40,23 @@
 
   // Links
   a {
-    font-weight:     $linkWeight;
-    text-decoration: $linkDecoration;
+    font-weight:     theme.$linkWeight;
+    text-decoration: theme.$linkDecoration;
     &, &:visited {
-      color: $linkColor;
+      color: theme.$linkColor;
     }
     &:hover, &:active {
-      color: $linkHover;
+      color: theme.$linkHover;
     }
   }
 
   // Strong
   strong {
-    font-weight: $fontBoldWeight;
+    font-weight: theme.$fontBoldWeight;
     font-style:  normal;
   }
   em {
-    font-weight: $fontWeight;
+    font-weight: theme.$fontWeight;
     font-style:  italic;
   }
 
@@ -69,7 +71,7 @@
     width:      0;
     height:     0;
     transition: width ease-in 10ms, height ease-in 10ms,
-                background ease-in 2*$delay 10ms;
+                background ease-in 2*theme.$delay 10ms;
   }
   &.block .overlay {
     // Enabled
@@ -81,8 +83,8 @@
     width:      0;
     height:     0;
     background: transparent;
-    transition: width ease-out 10ms 2*$delay, height ease-out 10ms 2*$delay,
-                background ease-out 2*$delay;
+    transition: width ease-out 10ms 2*theme.$delay, height ease-out 10ms 2*theme.$delay,
+                background ease-out 2*theme.$delay;
   }
 
   // Popup
@@ -92,19 +94,19 @@
     display:       flex;
     position:      fixed;
     z-index:       1024;
-    left:          $popupMaxOffset;
-    bottom:        $popupMaxOffset;
-    width:         $popupWidth;
+    left:          theme.$popupMaxOffset;
+    bottom:        theme.$popupMaxOffset;
+    width:         theme.$popupWidth;
     max-height:    95%;
     max-width:     90%;
     overflow:      hidden;
-    background:    $popupBack;
-    color:         $popupColor;
-    border-radius: $popupRadius;
-    box-shadow:    $popupShadow;
-    transition:    all ease-in $delay,
-                   border-radius ease-in 2*$delay $delay,
-                   max-width ease-in $delay $delay, max-height ease-in $delay 2*$delay;
+    background:    theme.$popupBack;
+    color:         theme.$popupColor;
+    border-radius: theme.$popupRadius;
+    box-shadow:    theme.$popupShadow;
+    transition:    all ease-in theme.$delay,
+                   border-radius ease-in 2*theme.$delay theme.$delay,
+                   max-width ease-in theme.$delay theme.$delay, max-height ease-in theme.$delay 2*theme.$delay;
 
     // Animated hat
     &:before,
@@ -113,11 +115,11 @@
       position:   absolute;
       display:    block;
       cursor:     pointer;
-      top:        $hatOffset;
-      right:      $hatOffset;
-      width:      $hatSize;
-      height:     $hatSize;
-      background: transparent no-repeat center/$hatSize;
+      top:        theme.$hatOffset;
+      right:      theme.$hatOffset;
+      width:      theme.$hatSize;
+      height:     theme.$hatSize;
+      background: transparent no-repeat center/theme.$hatSize;
     }
     &:before {
       background-image: url('../img/glasses.png');
@@ -125,7 +127,7 @@
     &:after {
       background-image: url('../img/hat.png');
       transform-origin: 80% 50%;
-      transition:       all ease-in $delay $delay;
+      transition:       all ease-in theme.$delay theme.$delay;
     }
 
   }
@@ -133,11 +135,11 @@
   // Right corner
   &.right .popup {
     left:  auto;
-    right: $popupMaxOffset;
+    right: theme.$popupMaxOffset;
     &:before,
     &:after {
       right: auto;
-      left:  $hatOffset;
+      left:  theme.$hatOffset;
     }
   }
 
@@ -157,11 +159,11 @@
       flex-wrap:       wrap;
     }
     .main, .btns {
-      min-width: $popupMinWidth;
+      min-width: theme.$popupMinWidth;
     }
-    @media (min-width: 2*$popupMinWidth) {
+    @media (min-width: 2*theme.$popupMinWidth) {
       .consent {
-        padding-top: $popupGutter+.5*$fontSize;
+        padding-top: theme.$popupGutter+.5*theme.$fontSize;
       }
       .prefs {
         margin: 0;
@@ -171,11 +173,11 @@
   &.show.banner {
     .popup {
       max-width:     90%;
-      border-radius: $popupRadius;
+      border-radius: theme.$popupRadius;
     }
     .consent {
       flex-direction: column;
-      padding-top:    $hatSize+$popupGutter;
+      padding-top:    theme.$hatSize+theme.$popupGutter;
       align-items:    stretch;
     }
     .prefs {
@@ -201,22 +203,22 @@
 
   // Show
   &.show .popup {
-    width: $popupMaxWidth;
+    width: theme.$popupMaxWidth;
   }
 
   // Minified popup
   &.min .popup {
     opacity:       .5;
     overflow:      hidden;
-    max-width:     $hatOverall;
-    max-height:    $hatOverall;
-    border-radius: $hatRadius;
-    left:          $popupMinOffset;
-    bottom:        $popupMinOffset;
+    max-width:     theme.$hatOverall;
+    max-height:    theme.$hatOverall;
+    border-radius: theme.$hatRadius;
+    left:          theme.$popupMinOffset;
+    bottom:        theme.$popupMinOffset;
     transform:     translate(0, 0);
-    transition:    all ease-out $delay $delay,
-                   max-height ease-out $delay, max-width ease-out $delay $delay,
-                   border-radius ease-out 2*$delay;
+    transition:    all ease-out theme.$delay theme.$delay,
+                   max-height ease-out theme.$delay, max-width ease-out theme.$delay theme.$delay,
+                   border-radius ease-out 2*theme.$delay;
     &:hover {
       opacity: 1;
     }
@@ -230,11 +232,11 @@
   // Right corner
   &.min.right .popup {
     left:  auto;
-    right: $popupMinOffset;
+    right: theme.$popupMinOffset;
   }
   &.min.autohide.right .popup {
     left:  auto;
-    right: -$hatOverall;
+    right: -(theme.$hatOverall);
   }
 
   // Cognition level
@@ -257,7 +259,7 @@
     transform: rotate(36deg);
   }
   &.spring .popup:after {
-    animation: spring $delay alternate ease-in-out infinite;
+    animation: spring theme.$delay alternate ease-in-out infinite;
   }
   @keyframes spring {
     0%   { transform: translateY(1px); }
@@ -269,7 +271,7 @@
 
     margin:         0;
     width:          100%;
-    padding:        $hatSize+$popupGutter 0 $popupGutter;
+    padding:        theme.$hatSize+theme.$popupGutter 0 theme.$popupGutter;
     perspective:    600px;
 
     // Flex
@@ -279,7 +281,7 @@
 
     // Fade in
     opacity:        1;
-    transition:     opacity ease-in $delay 2*$delay;
+    transition:     opacity ease-in theme.$delay 2*theme.$delay;
 
   }
 
@@ -297,7 +299,7 @@
   // Fade out
   &.min .consent {
     opacity:    0;
-    transition: opacity ease-out $delay;
+    transition: opacity ease-out theme.$delay;
   }
 
   // Logo
@@ -305,15 +307,15 @@
     // Visible by default
     flex:       0 0 auto;
     opacity:    1;
-    max-height: $logoHeight+$logoMargin;
+    max-height: theme.$logoHeight+theme.$logoMargin;
     overflow:   hidden;
-    transition: all ease-in $delay;
+    transition: all ease-in theme.$delay;
     img {
       display:       block;
-      margin-left:   $popupGutter;
+      margin-left:   theme.$popupGutter;
       width:         auto;
       height:        auto;
-      max-height:    $logoHeight;
+      max-height:    theme.$logoHeight;
       max-width:     80%;
       margin-bottom: 1em;
     }
@@ -329,7 +331,7 @@
   .head {
     flex:    0 0 auto;
     margin:  0;
-    padding: 0 $popupGutter;
+    padding: 0 theme.$popupGutter;
     p {
       margin: 0 0 .5em;
     }
@@ -340,9 +342,9 @@
 
     // Flex
     flex:       1;
-    transition: all ease-in $delay;
-    font-size:  $fontPrefsSize;
-    padding:    0 $popupGutter;
+    transition: all ease-in theme.$delay;
+    font-size:  theme.$fontPrefsSize;
+    padding:    0 theme.$popupGutter;
     margin:     1em 0;
 
     // Collapsed by default
@@ -370,9 +372,9 @@
     padding: 0;
     border:  none;
     legend {
-      font-size:   $legendSize;
-      font-weight: $legendWeight;
-      color:       $legendColor;
+      font-size:   theme.$legendSize;
+      font-weight: theme.$legendWeight;
+      color:       theme.$legendColor;
       margin:      0 0 .5em;
       padding:     0;
       border:      none;
@@ -395,7 +397,7 @@
       display:     block;
       margin:      0;
       padding:     0;
-      font-weight: $fontWeight;
+      font-weight: theme.$fontWeight;
       cursor:      pointer;
     }
 
@@ -406,9 +408,9 @@
         opacity: .5;
       }
       &:checked + span:after {
-        left:         $sliderWidth - $checkWidth - $checkOffset;
-        background:   $checkActive;
-        border-color: $checkActive;
+        left:         theme.$sliderWidth - theme.$checkWidth - theme.$checkOffset;
+        background:   theme.$checkActive;
+        border-color: theme.$checkActive;
       }
     }
     span {
@@ -417,30 +419,30 @@
       &:before {
         content:        "";
         display:        inline-block;
-        width:          $sliderWidth;
-        height:         $sliderHeight;
-        border:         $sliderBorder $sliderColor solid;
-        border-radius:  $sliderRadius;
+        width:          theme.$sliderWidth;
+        height:         theme.$sliderHeight;
+        border:         theme.$sliderBorder theme.$sliderColor solid;
+        border-radius:  theme.$sliderRadius;
         vertical-align: bottom;
         margin-right:   1em;
       }
       &:after {
         content:       "";
         position:      absolute;
-        width:         $checkWidth;
-        height:        $checkHeight;
-        background:    $checkColor;
-        border:        $checkBorder $checkColor solid;
-        border-radius: $checkRadius;
-        left:          $checkOffset;
+        width:         theme.$checkWidth;
+        height:        theme.$checkHeight;
+        background:    theme.$checkColor;
+        border:        theme.$checkBorder theme.$checkColor solid;
+        border-radius: theme.$checkRadius;
+        left:          theme.$checkOffset;
         top:           50%;
         transform:     translateY(-50%);
         text-align:    center;
         font-size:     10px;
         line-height:   1;
-        font-weight:   $checkNewWeight;
-        color:         $checkNewColor;
-        transition:    all ease-in $delay;
+        font-weight:   theme.$checkNewWeight;
+        color:         theme.$checkNewColor;
+        transition:    all ease-in theme.$delay;
       }
     }
 
@@ -448,14 +450,14 @@
     i {
       flex:          0 0 auto;
       cursor:        pointer;
-      background:    $tooltipBack;
-      color:         $tooltipColor;
-      font-weight:   $tooltipWeight;
+      background:    theme.$tooltipBack;
+      color:         theme.$tooltipColor;
+      font-weight:   theme.$tooltipWeight;
       line-height:   1;
       margin-left:   1em;
-      padding:       $tooltipPadding;
-      border-radius: $tooltipRadius;
-      font-size:     $tooltipSize;
+      padding:       theme.$tooltipPadding;
+      border-radius: theme.$tooltipRadius;
+      font-size:     theme.$tooltipSize;
       font-style:    normal;
       text-align:    center;
       &.none {
@@ -467,7 +469,7 @@
         content: "+";
       }
       label {
-        font-weight: $tooltipNew;
+        font-weight: theme.$tooltipNew;
       }
     }
 
@@ -476,25 +478,25 @@
   // About box
   .info {
 
-    margin:     .5em (-$popupGutter);
-    padding:    0 $popupGutter;
-    background: $listBack;
-    color:      $listColor;
-    box-shadow: $listShadow;
+    margin:     .5em (-(theme.$popupGutter));
+    padding:    0 theme.$popupGutter;
+    background: theme.$listBack;
+    color:      theme.$listColor;
+    box-shadow: theme.$listShadow;
 
     // Expanded
     overflow:   auto;
     max-height: 100px;
-    transition: margin ease-in $delay,
-                max-height ease-in $delay;// $delay;
+    transition: margin ease-in theme.$delay,
+                max-height ease-in theme.$delay;// $delay;
 
     // Collapsed
     &.rolled {
       overflow:   hidden;
       max-height: 0;
-      margin:     0 (-$popupGutter);
-      transition: max-height ease-out $delay,
-                  margin ease-out $delay;// $delay;
+      margin:     0 (-(theme.$popupGutter));
+      transition: max-height ease-out theme.$delay,
+                  margin ease-out theme.$delay;// $delay;
     }
 
     // Container
@@ -526,8 +528,8 @@
 
     // Misusage warning
     &.misuse {
-      background: $alertBack;
-      color:      $alertColor;
+      background: theme.$alertBack;
+      color:      theme.$alertColor;
     }
 
   }
@@ -539,17 +541,17 @@
     position:        relative;
     text-align:      right;
     transform-style: preserve-3d;
-    height:          $buttonHeight;
-    transition:      height ease-in $delay;
-    @media (max-width: $popupWidth+20px) {
-      height: 2*$buttonHeight+$buttonMargin;
+    height:          theme.$buttonHeight;
+    transition:      height ease-in theme.$delay;
+    @media (max-width: theme.$popupWidth+20px) {
+      height: 2*theme.$buttonHeight+theme.$buttonMargin;
       .front button:nth-child(3) {
-        border-top-right-radius:    $buttonRadius;
-        border-bottom-right-radius: $buttonRadius;
+        border-top-right-radius:    theme.$buttonRadius;
+        border-bottom-right-radius: theme.$buttonRadius;
       }
       .front button:nth-child(4) {
-        border-top-left-radius:    $buttonRadius;
-        border-bottom-left-radius: $buttonRadius;
+        border-top-left-radius:    theme.$buttonRadius;
+        border-bottom-left-radius: theme.$buttonRadius;
       }
     }
 
@@ -559,8 +561,8 @@
       top:                 0;
       right:               0;
       width:               100%;
-      padding:             0 $popupGutter;
-      transition:          all ease-in 2*$delay $delay;
+      padding:             0 theme.$popupGutter;
+      transition:          all ease-in 2*theme.$delay theme.$delay;
       -webkit-backface-visibility: hidden;
       -moz-backface-visibility: hidden;
       backface-visibility: hidden;
@@ -572,30 +574,30 @@
     // Button
     button {
       cursor:      pointer;
-      font-weight: $buttonWeight;
-      font-size:   $buttonSize;
-      background:  $buttonBack;
-      color:       $buttonColor;
-      margin:      0 0 $buttonMargin;
-      padding:     $buttonPadding;
-      box-shadow:  $buttonShadow;
+      font-weight: theme.$buttonWeight;
+      font-size:   theme.$buttonSize;
+      background:  theme.$buttonBack;
+      color:       theme.$buttonColor;
+      margin:      0 0 theme.$buttonMargin;
+      padding:     theme.$buttonPadding;
+      box-shadow:  theme.$buttonShadow;
       border:      none;
-      transition:  all ease-in $delay;
+      transition:  all ease-in theme.$delay;
       &:first-child {
-        border-top-left-radius:    $buttonRadius;
-        border-bottom-left-radius: $buttonRadius;
+        border-top-left-radius:    theme.$buttonRadius;
+        border-bottom-left-radius: theme.$buttonRadius;
       }
       &:last-child {
-        border-top-right-radius:    $buttonRadius;
-        border-bottom-right-radius: $buttonRadius;
-        font-weight: $buttonOkWeight;
-        color:       $buttonMainColor;
-        background:  $buttonMainBack;
+        border-top-right-radius:    theme.$buttonRadius;
+        border-bottom-right-radius: theme.$buttonRadius;
+        font-weight: theme.$buttonOkWeight;
+        color:       theme.$buttonMainColor;
+        background:  theme.$buttonMainBack;
       }
       &:hover, &:active {
         box-shadow: none;
-        background: $buttonColor;
-        color:      $buttonBack;
+        background: theme.$buttonColor;
+        color:      theme.$buttonBack;
       }
     }
 
@@ -603,8 +605,8 @@
 
   // Flap
   &.show .btns {
-    @media (max-width: $popupWidth+20px) {
-      height: $buttonHeight;
+    @media (max-width: theme.$popupWidth+20px) {
+      height: theme.$buttonHeight;
     }
     div.back {
       transform: rotateX(0);

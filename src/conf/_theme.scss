@@ -1,3 +1,4 @@
+@use "sass:color";
 /**    _ _                 _
  *  __| (_)___ __ _ _ ___ | |_ ___
  * / _` | (_-</ _| '_/ -_)|  _/ _ \
@@ -32,10 +33,10 @@ $green:     #859900;
 
 // Colors
 $colorWhitish:    #f8f8f8;
-$colorBack:       lighten($base1, 30%);
-$colorDark:       lighten($base0, 30%);
+$colorBack:       color.adjust($base1, $lightness: 30%);
+$colorDark:       color.adjust($base0, $lightness: 30%);
 $colorFront:      $base03;
-$colorAlt:        darken($blue, 10%);
+$colorAlt:        color.adjust($blue, $lightness: -10%);
 $colorOff:        $base01;
 $colorShadow:     rgba($base00, .3);
 
@@ -60,7 +61,7 @@ $popupMinWidth:   383px; // 768/2-1
 $popupWidth:      429px; // odd, to avoid aliasing with transform()
 $popupMaxWidth:   429px;
 $popupBack:       $colorBack;
-$popupAlt:        lighten($base01, 30%);
+$popupAlt:        color.adjust($base01, $lightness: 30%);
 $popupColor:      $colorFront;
 $popupGutter:     16px;
 $popupShadow:     2px 2px 5px $colorShadow;
@@ -129,7 +130,7 @@ $buttonRadius:    4px; // 0|4|8px;
 // Alert
 $alertPadding:    16px;
 $alertSize:       12px;
-$alertBack:       lighten($red, 30%);
+$alertBack:       color.adjust($red, $lightness: 30%);
 $alertColor:      $colorFront;
 
 // Hat
