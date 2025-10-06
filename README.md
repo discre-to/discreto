@@ -12,7 +12,24 @@ you have the right to stay anonymous<br/>
 - [Documentation](https://discre.to/#doc)
 - [API](https://discre.to/#api)
 
-## Getting Started
+## Getting started
+
+Use the [wizard](https://discre.to/#config) and copy/paste the resulting
+HTML snippet before the closing `</body>` tag of your website/template:
+
+```html
+<!-- cookie & privacy consent - https://discre.to -->
+<script>
+window.discretoConf = { YOUR_CONFIG_HERE };
+(function(d,i,s,c,o){c=d.getElementsByTagName(i)[0];o=d.createElement(i);
+o.async=true;o.src=s;c.parentNode.insertBefore(o,c)})
+(document,'script','//repo.discre.to/latest/discreto.min.js')
+</script>
+```
+
+That's it!
+
+## Development
 
 ### Prerequisites
 
