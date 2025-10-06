@@ -30,22 +30,22 @@
   "devDependencies": {
     "@babel/preset-env": "^7.19.4",
     "@babel/register": "^7.18.9",
-    "bufferutil": "^4.0.7",
-    "canvas": "^2.10.2",
-    "css-loader": "^6.7.1",
+    "bufferutil": "^4.0.9",
+    "canvas": "^3.2.0",
+    "css-loader": "^7.1.2",
     "esm": "^3.2.25",
     "expect.js": "^0.3.1",
     "fibers": "^5.0.3",
     "file-loader": "^6.2.0",
-    "jsdom": "^20.0.2",
-    "mini-css-extract-plugin": "^2.6.1",
-    "mocha": "^10.1.0",
+    "jsdom": "^27.0.0",
+    "mini-css-extract-plugin": "^2.9.4",
+    "mocha": "^11.7.4",
     "node-sass": "^9.0.0",
-    "sass": "^1.55.0",
-    "sass-loader": "^13.1.0",
+    "sass": "^1.93.2",
+    "sass-loader": "^16.0.5",
     "url-loader": "^4.1.1",
-    "utf-8-validate": "^5.0.10",
-    "webpack": "^5.74.0",
-    "webpack-cli": "^4.10.0"
+    "utf-8-validate": "^6.0.5",
+    "webpack": "^5.102.0",
+    "webpack-cli": "^6.0.1"
   }
 }
